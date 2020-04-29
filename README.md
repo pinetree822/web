@@ -1,2 +1,2 @@
-# get_index
+# web
 개인페이지 설정
