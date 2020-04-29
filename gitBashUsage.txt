@@ -1,0 +1,177 @@
+
+
+========================================================
+githup 다운로드
+========================================================
+
+kim@kim-PC MINGW64 /
+$ cd d:
+
+kim@kim-PC MINGW64 /d
+$ ls
+'!$ZcG'/                  'GitHub 페이지 작업-GitHub 도움말.url'
+'$RECYCLE.BIN'/            KIM-PC/
+ _2020.04.23.programing/   MediaID.bin
+ _backup/                  Pictures/
+ _installWin/             'Sublime Text Backups'/
+ _PortableGit/            'System Volume Information'/
+ _saveGame/                WindowsImageBackup/
+ _saveOthor/               백업/
+ _xampp/                   프로그램/
+
+kim@kim-PC MINGW64 /d
+$ mkdir workspace
+
+kim@kim-PC MINGW64 /d
+$ cd workspace
+
+kim@kim-PC MINGW64 /d/workspace
+$ ls
+
+kim@kim-PC MINGW64 /d/workspace
+$ mkdir simpled2ev
+
+kim@kim-PC MINGW64 /d/workspace
+$ cd simpled2ev
+
+kim@kim-PC MINGW64 /d/workspace/simpled2ev
+$ cd..
+bash: cd..: command not found
+
+kim@kim-PC MINGW64 /d/workspace/simpled2ev
+$ cd ..
+
+kim@kim-PC MINGW64 /d/workspace
+$ ls
+simpled2ev/
+
+kim@kim-PC MINGW64 /d/workspace
+$ mkdir pinetree822.github.io
+
+kim@kim-PC MINGW64 /d/workspace
+$ cd pinetre822.github.io
+bash: cd: pinetre822.github.io: No such file or directory
+
+kim@kim-PC MINGW64 /d/workspace
+$ ls
+pinetree822.github.io/  simpled2ev/
+
+kim@kim-PC MINGW64 /d/workspace
+$ cd pinetree822.github.io
+
+kim@kim-PC MINGW64 /d/workspace/pinetree822.github.io
+$ git clone http://github.com/pinetree822/pinetree822.github.io
+Cloning into 'pinetree822.github.io'...
+Logon failed, use ctrl+c to cancel basic credential prompt.
+
+kim@kim-PC MINGW64 /d/workspace/pinetree822.github.io
+$ ^C
+
+kim@kim-PC MINGW64 /d/workspace/pinetree822.github.io
+$ git clone http://github.com/pinetree822/pinetree822.github.io
+fatal: destination path 'pinetree822.github.io' already exists and is not an empty directory.
+
+kim@kim-PC MINGW64 /d/workspace/pinetree822.github.io
+$ git clone http://github.com/pinetree822/pinetree822.github.io
+Cloning into 'pinetree822.github.io'...
+warning: redirecting to https://github.com/pinetree822/pinetree822.github.io/
+remote: Enumerating objects: 7, done.
+remote: Counting objects: 100% (7/7), done.
+remote: Compressing objects: 100% (7/7), done.
+remote: Total 238 (delta 2), reused 0 (delta 0), pack-reused 231
+Receiving objects: 100% (238/238), 2.51 MiB | 2.05 MiB/s, done.
+Resolving deltas: 100% (90/90), done.
+
+kim@kim-PC MINGW64 /d/workspace/pinetree822.github.io
+$ clear
+
+
+
+
+
+
+========================================================
+githup 파일 변경후 서버 commit 내용 수정후 업로드
+========================================================
+
+kim@kim-PC MINGW64 /d/workspace/pinetree822.github.io
+$ cd pinetree822.github.io
+
+kim@kim-PC MINGW64 /d/workspace/pinetree822.github.io/pinetree822.github.io (master)
+$ ls
+_config.yml  _layouts/  assets/   LICENSE.txt
+_includes/   archive/   index.md  README.md
+
+kim@kim-PC MINGW64 /d/workspace/pinetree822.github.io/pinetree822.github.io (master)
+$ git '_config.yml'
+git: '_config.yml' is not a git command. See 'git --help'.
+
+kim@kim-PC MINGW64 /d/workspace/pinetree822.github.io/pinetree822.github.io (master)
+$ git add '_config.yml'
+
+kim@kim-PC MINGW64 /d/workspace/pinetree822.github.io/pinetree822.github.io (master)
+$ git commit -m '수정한 내용을 기록'
+[master 880f796] 수정한 내용을 기록
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+kim@kim-PC MINGW64 /d/workspace/pinetree822.github.io/pinetree822.github.io (master)
+$ git push
+warning: redirecting to https://github.com/pinetree822/pinetree822.github.io/
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 467 bytes | 467.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To http://github.com/pinetree822/pinetree822.github.io
+   0cddad1..880f796  master -> master
+
+kim@kim-PC MINGW64 /d/workspace/pinetree822.github.io/pinetree822.github.io (master)
+$
+
+
+
+
+
+
+
+========================================================
+githup 파일 생성 변경후 commit 파일내용 수정후 git서버에 업로드 한다.
+========================================================
+kim@kim-PC MINGW64 /d/workspace/pinetree822.github.io/pinetree822.github.io/webdevelop/_posts (master)
+$ ls
+2020-04-28-github-make-git-and-pinetree822-blog.md
+
+kim@kim-PC MINGW64 /d/workspace/pinetree822.github.io/pinetree822.github.io/webdevelop/_posts (master)
+$ git add '2020-04-28-github-make-git-and-pinetree822-blog.md'
+
+kim@kim-PC MINGW64 /d/workspace/pinetree822.github.io/pinetree822.github.io/webdevelop/_posts (master)
+$ git commit -m 'add post'
+[master 20c3296] add post
+ 1 file changed, 24 insertions(+)
+ create mode 100644 webdevelop/_posts/2020-04-28-github-make-git-and-pinetree822-blog.md
+
+kim@kim-PC MINGW64 /d/workspace/pinetree822.github.io/pinetree822.github.io/webdevelop/_posts (master)
+$ git push
+warning: redirecting to https://github.com/pinetree822/pinetree822.github.io/
+Enumerating objects: 6, done.
+Counting objects: 100% (6/6), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (5/5), 972 bytes | 972.00 KiB/s, done.
+Total 5 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To http://github.com/pinetree822/pinetree822.github.io
+   880f796..20c3296  master -> master
+
+kim@kim-PC MINGW64 /d/workspace/pinetree822.github.io/pinetree822.github.io/webdevelop/_posts (master)
+$
+
+
+
+
+
+
+
+
