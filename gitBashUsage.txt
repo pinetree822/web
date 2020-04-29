@@ -87,9 +87,6 @@ $ clear
 
 
 
-
-
-
 ========================================================
 githup 파일 변경후 서버 commit 내용 수정후 업로드
 ========================================================
@@ -132,10 +129,6 @@ $
 
 
 
-
-
-
-
 ========================================================
 githup 파일 생성 변경후 commit 파일내용 수정후 git서버에 업로드 한다.
 ========================================================
@@ -170,8 +163,271 @@ $
 
 
 
+========================================================
+client repository 내용을 github서버 repository에 업로드한다.
+========================================================
+출처: https://recoveryman.tistory.com/323?category=635733 [회복맨 블로그]
+
+git commit -m "커밋메시지"
+
+커밋 을 하고 커밋 메시지를 입력합니다. 메시지는 꼭 입력해야 합니다.
+
+git status
+
+현재 수정되거나 삭제되거나 새로 만들어진 파일이 있는지 없는지 확인해 봅니다.
+
+git remote -v
+
+현재 리모트 저장소를 확인하기 위해 명령어를 입력해봤습니다. 정확히 제 깃허브 저장소를 가르키고 있네요.
+
+git push
+
+이 명령어를 입력하면 이제 깃허브 블로그에 작성했던 글이 보이게 됩니다. 깃허브 저장소에 커밋된 파일들을 밀어넣습니다.
 
 
+
+
+kim@kim-PC MINGW64 /
+$ cd d:/_xampp/htdocs
+
+
+kim@kim-PC MINGW64 /d/_xampp/htdocs
+$ git config --global user.name "pinetree822"
+
+
+kim@kim-PC MINGW64 /d/_xampp/htdocs
+$ git config --global user.email "pinetree822@nate.com"
+
+
+kim@kim-PC MINGW64 /d/_xampp/htdocs
+$ ls
+
+get_index/  html5/  java/  pinetree822.github.io/  silver-goggles/  web/
+
+
+
+kim@kim-PC MINGW64 /d/_xampp/htdocs
+$ git status
+
+fatal: not a git repository (or any of the parent directories): .git
+
+
+kim@kim-PC MINGW64 /d/_xampp/htdocs
+$ git add *
+
+fatal: not a git repository (or any of the parent directories): .git
+
+
+
+kim@kim-PC MINGW64 /d/_xampp/htdocs
+$ cd html5
+
+
+kim@kim-PC MINGW64 /d/_xampp/htdocs/html5 (html5)
+$ git status
+
+On branch html5
+Your branch is up to date with 'origin/html5'.
+
+nothing to commit, working tree clean
+
+
+kim@kim-PC MINGW64 /d/_xampp/htdocs/html5 (html5)
+$ git add *
+
+
+kim@kim-PC MINGW64 /d/_xampp/htdocs/html5 (html5)
+$ git status
+
+On branch html5
+Your branch is up to date with 'origin/html5'.
+
+nothing to commit, working tree clean
+
+
+kim@kim-PC MINGW64 /d/_xampp/htdocs/html5 (html5)
+$ cd ..
+
+
+kim@kim-PC MINGW64 /d/_xampp/htdocs
+$ ls
+
+html5/  java/  pinetree822.github.io/  silver-goggles/  web/
+
+
+kim@kim-PC MINGW64 /d/_xampp/htdocs
+$ cd web
+
+
+
+
+kim@kim-PC MINGW64 /d/_xampp/htdocs/web (master)
+$ git status
+
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   README.md
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        2020-04-28-github-make-git-and-pinetree822-blog.md
+        2020-04-28-php-cli-test-1.txt
+        "GitHub \355\216\230\354\235\264\354\247\200 \354\236\221\354\227\205-GitHub \353\217\204\354\233\200\353\247\220.url"
+        gitBashUsage.txt
+        markDownTest.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+
+
+
+
+kim@kim-PC MINGW64 /d/_xampp/htdocs/web (master)
+$ git add *
+
+
+
+
+kim@kim-PC MINGW64 /d/_xampp/htdocs/web (master)
+$ git status
+
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   2020-04-28-github-make-git-and-pinetree822-blog.md
+        new file:   2020-04-28-php-cli-test-1.txt
+        new file:   "GitHub \355\216\230\354\235\264\354\247\200 \354\236\221\354\227\205-GitHub \353\217\204\354\233\200\353\247\220.url"
+        modified:   README.md
+        new file:   gitBashUsage.txt
+        new file:   markDownTest.md
+
+
+
+kim@kim-PC MINGW64 /d/_xampp/htdocs/web (master)
+$ git commit -m "개인페이지 홈페이지"
+
+[master 793b2ce] 개인페이지 홈페이지
+ 6 files changed, 700 insertions(+), 1 deletion(-)
+ create mode 100644 2020-04-28-github-make-git-and-pinetree822-blog.md
+ create mode 100644 2020-04-28-php-cli-test-1.txt
+ create mode 100644 "GitHub \355\216\230\354\235\264\354\247\200 \354\236\221\354\227\205-GitHub \353\217\204\354\233\200\353\247\220.url"
+ create mode 100644 gitBashUsage.txt
+ create mode 100644 markDownTest.md
+
+
+
+kim@kim-PC MINGW64 /d/_xampp/htdocs/web (master)
+$ git status
+
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+
+
+
+kim@kim-PC MINGW64 /d/_xampp/htdocs/web (master)
+$ git remote -v
+
+origin  https://github.com/pinetree822/web.git (fetch)
+origin  https://github.com/pinetree822/web.git (push)
+
+
+
+kim@kim-PC MINGW64 /d/_xampp/htdocs/web (master)
+$ git push
+Enumerating objects: 10, done.
+Counting objects: 100% (10/10), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (7/7), done.
+Writing objects: 100% (8/8), 5.54 KiB | 2.77 MiB/s, done.
+Total 8 (delta 0), reused 1 (delta 0), pack-reused 0
+To https://github.com/pinetree822/web.git
+   e1e096e..793b2ce  master -> master
+
+
+kim@kim-PC MINGW64 /d/_xampp/htdocs/web (master)
+$ git add *
+
+
+kim@kim-PC MINGW64 /d/_xampp/htdocs/web (master)
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   gitBashUsage.txt
+
+
+
+kim@kim-PC MINGW64 /d/_xampp/htdocs/web (master)
+$ git remote -v
+origin  https://github.com/pinetree822/web.git (fetch)
+origin  https://github.com/pinetree822/web.git (push)
+
+
+
+
+
+
+
+========================================================
+
+========================================================
+
+
+
+
+
+
+========================================================
+
+========================================================
+
+
+
+
+
+
+========================================================
+
+========================================================
+
+
+
+
+
+
+========================================================
+
+========================================================
+
+
+
+
+
+
+========================================================
+
+========================================================
+
+
+
+
+
+
+========================================================
+
+========================================================
 
 
 
