@@ -3,6 +3,7 @@ Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
 
 
 
+
 D:\_xampp\htdocs>php -a;
 Error in argument 1, char 3: option not found ;
 Usage: php [options] [-f] <file> [--] [args...]
