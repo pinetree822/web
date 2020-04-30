@@ -1,0 +1,710 @@
+﻿Microsoft Windows [Version 6.1.7601]
+Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
+
+
+
+
+D:\_xampp\htdocs>php -a;
+Error in argument 1, char 3: option not found ;
+Usage: php [options] [-f] <file> [--] [args...]
+   php [options] -r <code> [--] [args...]
+   php [options] [-B <begin_code>] -R <code> [-E <end_code>] [--] [args...]
+   php [options] [-B <begin_code>] -F <file> [-E <end_code>] [--] [args...]
+   php [options] -S <addr>:<port> [-t docroot] [router]
+   php [options] -- [args...]
+   php [options] -a
+
+  -a               Run as interactive shell
+  -c <path>|<file> Look for php.ini file in this directory
+  -n               No configuration (ini) files will be used
+  -d foo[=bar]     Define INI entry foo with value 'bar'
+  -e               Generate extended information for debugger/profiler
+  -f <file>        Parse and execute <file>.
+  -h               This help
+  -i               PHP information
+  -l               Syntax check only (lint)
+  -m               Show compiled in modules
+  -r <code>        Run PHP <code> without using script tags <?..?>
+  -B <begin_code>  Run PHP <begin_code> before processing input lines
+  -R <code>        Run PHP <code> for every input line
+  -F <file>        Parse and execute <file> for every input line
+  -E <end_code>    Run PHP <end_code> after processing all input lines
+  -H               Hide any passed arguments from external tools.
+  -S <addr>:<port> Run with built-in web server.
+  -t <docroot>     Specify document root <docroot> for built-in web server.
+  -s               Output HTML syntax highlighted source.
+  -v               Version number
+  -w               Output source with stripped comments and whitespace.
+  -z <file>        Load Zend extension <file>.
+
+  args...          Arguments passed to script. Use -- args when first argument
+                   starts with - or script is read from stdin
+
+  --ini            Show configuration file names
+
+  --rf <name>      Show information about function <name>.
+  --rc <name>      Show information about class <name>.
+  --re <name>      Show information about extension <name>.
+  --rz <name>      Show information about Zend extension <name>.
+  --ri <name>      Show configuration for extension <name>.
+
+
+
+
+
+===================================================
+php cli 실행
+===================================================
+
+D:\_xampp\htdocs>php -a
+Interactive shell
+
+
+php.exe -f c:apachehtdocs est.php > test.html
+이라고 실행하면 스크립트 실행 결과물이 화면에 출력되지 않고
+test.html이라는 파일로 저장됩니다. 실행 결과를 확인하고 싶으면
+test.html을 웹브라우저로 열어보면 되지요.
+
+tood.net님의 글
+------------------------------------
+
+
+php.exe -f c:apachehtdocs est.php > test.html
+
+c:>
+test.php
+<?php
+echo "tood.net";
+//phpinfo();
+?>
+
+-f 나 -p 옵션
+리눅스 면..lynx
+
+
+
+
+===================================================
+변수와 상수
+===================================================
+
+변수
+php > $foo = 'bar';
+php > $foo = 'baz';
+php > echo $foo;
+baz
+
+
+상수
+php > const FOO = 'bar';
+php > FOO = 'baz';
+Parse error: syntax error, unexpected '=' in php shell code on line 1
+
+php > echo FOO;
+bar
+
+
+변수와 상수의 유용성, 사용법
+php > $name = 'foo';
+php > echo 'Hello $name. $name, you have 10 unread message';
+Hello $name. $name, you have 10 unread message
+
+php > echo "Hello $name. $name, you have 10 unread message";
+Hello foo. foo, you have 10 unread message
+
+변수의 값을 문자열에 끼워 넣기
+php > $name = FOO;
+php > echo "Hello $name. $name, you have 10 unread message";
+Hello bar. bar, you have 10 unread message
+
+php > echo "Hello {$name}. {$name}, you have 10 unread message";
+Hello bar. bar, you have 10 unread message
+
+
+===================================================
+연산자
+===================================================
+대입연산자 / 문자열연산자
+
+대입 연산자/ 문자열연산자 테스트
+php > $foo = 'bar';
+php > $foo .= 'baz';
+php > echo $foo;
+barbaz
+
+
+
+
+산술연산자
+
+산술 연산자 테스트
+php > $foo = 0;
+php > echo ++$foo;
+1
+
+php > echo $foo++;
+1
+php > echo $foo;
+2
+
+php > echo 1+"2";
+3
+
+
+비교연산자
+
+비교 연산자 테스트
+php > var_dump(0===false);
+bool(false)
+
+php > var_dump(null===false);
+bool(false)
+
+php > var_dump(0==false);
+bool(true)
+
+php > var_dump(null==false);
+bool(true)
+
+
+
+===================================================
+데이터 타입
+===================================================
+
+배열
+
+배열을 만들고 원소에 접근하기
+php > $foo = ['bar', 'baz'];
+php > echo $foo[0];
+bar
+
+php > var_dump($foo);
+array(2) {
+  [0]=>
+  string(3) "bar"
+  [1]=>
+  string(3) "baz"
+}
+
+
+연관 배열을 만들고 원소에 접근하기
+php > $foo = ['foo'=>'bar', 'baz'=>'qux'];
+php > echo $foo['baz'];
+qux
+
+php > var_dump($foo);
+array(2) {
+  ["foo"]=>
+  string(3) "bar"
+  ["baz"]=>
+  string(3) "qux"
+}
+
+
+===================================================
+객체
+===================================================
+
+객체
+
+객체를 만들고 프로퍼티에 접근하기
+php > $foo = new stdClass;
+php > $foo->propery = 'bar';
+php > var_dump($foo);
+object(stdClass)#1 (1) {
+  ["propery"]=>
+  string(3) "bar"
+}
+
+타입 변환
+php > $foo = new stdClass;
+php > $foo->propery = 'bar';
+php > var_dump($foo);
+object(stdClass)#1 (1) {
+  ["propery"]=>
+  string(3) "bar"
+}
+
+
+php > var_dump((array)$foo);
+array(1) {
+  ["propery"]=>
+  string(3) "bar"
+}
+
+
+===================================================
+조건문
+===================================================
+
+if절안에서 exit(), die(), throw, return 등 로직의 실행을 끝낸다.
+
+php에서 null, 0, '' 등은 거짓으로 평가한다.
+오류를 피하기 위해서는 === 연산자로 평가 확인한다.
+
+
+if조건문
+php >
+	if(true){
+		echo 'The expression was evaluated as "true"';
+	} else {
+		echo 'The expression was evaluated as "false"';
+	}
+The expression was evaluated as "true"
+
+
+일항 논리 연산자
+php > $foo = null;
+php >
+	if(!$foo){
+		echo '$foo has no value';
+	}
+$foo has no value
+
+
+조건식의 응용
+php > $foo = $bar = 100;
+php >
+	if($baz = $foo * $bar){
+		echo '$baz has value of '.$baz;
+	}
+$baz has value of 10000
+
+
+
+삼항 연산자
+php > $foo = 'bar';
+php > $baz = $foo ?:'qux';
+php > echo $baz;
+bar
+
+php > $foo = '';
+php > $baz =$foo ?:'quz';
+php > echo $baz;
+quz
+
+
+===================================================
+반복문
+===================================================
+
+foreach 반복문
+php > $collection = ['apple','banana','tomato'];
+php >
+	foreach($collection as $fruit){
+		echo "<li>{$fruit}</li>";
+	}
+
+<li>apple</li><li>banana</li><li>tomato</li>
+
+
+연관 배열과 반복문의 응용
+php > $collection = ['apple'=>'apple.png', 'banana'=>'banana.png', 'tomato'=>'tomato.png'];
+php >
+	foreach($collection as $key=>$val){
+		echo "<img src='{$val}' alt='{$key}'>";
+	}
+
+<img src='apple.png' alt='apple'><img src='banana.png' alt='banana'><img src='tomato.png'
+alt='tomato'>
+
+
+
+===================================================
+함수
+===================================================
+
+함수를 만들고 호출하기
+php >
+	function equation_of_line($var){
+		return 2*$var+1;
+	}
+php > echo equation_of_line(1);
+3
+
+
+전역변수와 지역변수
+php > $name = 'John Doe';
+php >
+	function greetings($name, $greeting='Hello'){
+		return "{$greeting}, {$name}";
+	};
+php > echo greetings('Jane Doe');
+Hello, Jane Doe
+
+
+
+
+===================================================
+클로저(익명함수)
+===================================================
+
+클로저
+php > $step = 2;
+php >
+	$increment = function ($var) use ($step){
+		return $var + $step;
+	};
+	print_r(array_map($increment, [1,2,3]));
+Array
+(
+    [0] => 3
+    [1] => 4
+    [2] => 5
+)
+
+
+클로저의 응용
+php >
+	function my_array_map($callback, $array){
+		$return = [];
+		foreach($array as $element){
+			$return[] = $callback($element);
+		}
+		return $return;
+	}
+	var_dump(my_array_map(function ($var){
+		return $var + 2;
+	}, [1,2,3]));
+
+array(3) {
+  [0]=>
+  int(3)
+  [1]=>
+  int(4)
+  [2]=>
+  int(5)
+}
+
+
+===================================================
+클래스
+===================================================
+php >
+class Post {
+  public $title;
+}
+$post = new Post();
+$post->title='foo title';
+echo $post->title;
+foo title
+php > exit
+
+D:\_xampp\htdocs>php post.php
+﻿foo title
+
+
+===================================================
+생성자
+===================================================
+php >
+class Post {
+  public $title;
+  public function __construct($title){
+    $this->title = $title;
+  }
+}
+php > $post = new Post('fooo title');
+php > echo $post->title;
+fooo title
+
+
+===================================================
+메서드
+===================================================
+php >
+class Post {
+  public $title;
+  public $viewCount = 0;
+
+  public function __construct($title){}
+  public function increaseViewCount(){
+    $this->viewCount += 1;
+  }
+}
+
+php > $post = new Post('food title');
+php > $post->increaseViewCount();
+php > $post->increaseViewCount();
+php > var_dump($post);
+
+object(Post)#1 (2) {
+  ["title"]=>
+  NULL
+  ["viewCount"]=>
+  int(2)
+}
+
+
+===================================================
+게터와 세터
+===================================================
+php >
+class Post {
+  public $title;
+
+  public function __construct($title){
+    $this->setTitle($title);
+  }
+
+  public function setTitle($title){
+    if(strlen($title)<10){
+      throw new Exception('Please enter a title longer than 10 characters.');
+    }
+    $this->title = $title;
+  }
+
+  public function getTitle(){
+    return ucfirst($this->title);
+  }
+}
+
+php > $post = new Post('foods title');
+php > echo $post->getTitle();
+Foods title
+
+php > $post1 = new Post('foo');
+PHP Warning:  Uncaught Exception: Please enter a title longer than 10 characters. in php shell code:10
+Stack trace:
+#0 php shell code(5): Post->setTitle('foo')
+#1 php shell code(1): Post->__construct('foo')
+#2 {main}  thrown in php shell code on line 10
+
+Warning: Uncaught Exception: Please enter a title longer than 10 characters. in php shellcode:10
+Stack trace:
+#0 php shell code(5): Post->setTitle('foo')
+#1 php shell code(1): Post->__construct('foo')
+#2 {main}  thrown in php shell code on line 10
+
+
+===================================================
+캡슐화
+===================================================
+php >
+class Post {
+  protected $title;
+
+  public function __construct($title) {
+    $this->setTitle($title);
+  }
+  protected function setTitle($title) {}
+  public function getTitle(){}
+}
+
+php > $post = new Post('foo title...');
+php > $post->setTitle('short');
+PHP Warning:  Uncaught Error: Call to protected method Post::setTitle() from context '' in php shell code:1
+Stack trace:
+#0 {main}  thrown in php shell code on line 1
+
+Warning: Uncaught Error: Call to protected method Post::setTitle() from context '' in php shell code:1
+Stack trace:
+#0 {main}  thrown in php shell code on line 1
+
+
+php > $post->title;
+PHP Warning:  Uncaught Error: Cannot access protected property Post::$title in php shell code:1
+Stack trace:
+#0 {main}  thrown in php shell code on line 1
+
+Warning: Uncaught Error: Cannot access protected property Post::$title in php shell code:1
+Stack trace:
+#0 {main}  thrown in php shell code on line 1
+
+
+===================================================
+상속
+===================================================
+<?php
+
+// post.php
+class Post {
+  public $title;
+
+  public function __construct($title){
+    $this->setTitle($title);
+  }
+
+  public function setTitle($title){
+    $this->title = $title;
+  }
+
+  public function getTitle(){
+    return ucfirst($this->title);
+  }
+}
+
+?>
+php > require 'post.php';
+﻿
+php > class Article extends Post {}
+php > echo (new Article('lorem ipsum dolor sit amet'))->getTitle();
+Lorem ipsum dolor sit amet
+
+
+
+php > require 'post.php';
+php >
+  class Article extends Post {
+    public function getTitle(){
+      return str_replace(' ', '_', $this->title);
+    }
+  }
+php > echo (new Article('a b c d-e_f'))->getTitle();
+a_b_c_d-e_f
+
+
+===================================================
+추상 클래스
+===================================================
+
+// writing.php
+<?php
+  abstract class writing {
+    abstract public function save();
+  }
+?>
+
+php > require 'writing.php';
+php >
+class Post extends writing {
+  public function save(){
+    echo 'saving';
+  }
+}
+php > (new Post('Lolem ipsum dolor sit amet'))->save();
+saving
+
+
+===================================================
+의존성 주입
+===================================================
+
+// ArrayStorage.php
+<?php
+class ArrayStorage
+{
+  protected $collection = [];
+
+  public function put($item)
+  {
+    $this->collection[] = $item;
+  }
+  public function collection()
+  {
+    return $this->collection;
+  }
+}
+?>
+
+// Writings.php
+<?php
+require 'ArrayStorage.php';
+
+abstract class Writings
+{
+  protected $storage;
+
+  public function __construct($title, ArrayStorage $storage)
+  {
+    $this->setTitle($title);
+    $this->storage = $storage;
+  }
+}
+?>
+
+php > require 'Writings.php';
+php >
+class Post1 extends Writings {
+  public $title;
+
+  public function save(){
+    $this->storage->put([
+      'model' => __CLASS__,
+      'title' => $this->title
+    ]);
+  }
+  public function setTitle($title)
+  {
+    $this->title = $title;
+  }
+}
+
+php > $storage = new ArrayStorage;
+php > (new Post1('Lorem dolar sit amet', $storage))->save();
+php > (new Post1('Duis dolor in reprehenderit', $storage))->save();
+
+php > var_dump($storage->collection());
+array(2) {
+  [0]=>
+  array(2) {
+    ["model"]=>
+    string(5) "Post1"
+    ["title"]=>
+    string(20) "Lorem dolar sit amet"
+  }
+  [1]=>
+  array(2) {
+    ["model"]=>
+    string(5) "Post1"
+    ["title"]=>
+    string(27) "Duis dolor in reprehenderit"
+  }
+}
+
+
+===================================================
+인터페이스
+===================================================
+php > require 'Writings2.php';
+php >
+class Post2 extends Writings2 {
+  public $title;
+
+  public function save(){
+    $this->storage->put([
+      'model' => __CLASS__,
+      'title' => $this->title
+    ]);
+  }
+  public function setTitle($title)
+  {
+    $this->title = $title;
+  }
+}
+
+php > $storage = new FileStorage;
+php > (new Post2('Lorem dolar sit amet', $storage))->save();
+php > (new Post2('Duis dolor in reprehenderit', $storage))->save();
+
+php > var_dump($storage->collection());
+
+array(2) {
+  [0]=>
+  object(stdClass)#2 (2) {
+    ["model"]=>
+    string(5) "Post2"
+    ["title"]=>
+    string(20) "Lorem dolar sit amet"
+  }
+  [1]=>
+  object(stdClass)#3 (2) {
+    ["model"]=>
+    string(5) "Post2"
+    ["title"]=>
+    string(27) "Duis dolor in reprehenderit"
+  }
+}
+
+
+
+===================================================
+
+===================================================
+
+===================================================
+
+===================================================
+
+

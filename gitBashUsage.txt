@@ -1,7 +1,7 @@
-
+ï»¿
 
 ========================================================
-githup ´Ù¿î·Îµå
+githup ë‹¤ìš´ë¡œë“œ
 ========================================================
 
 kim@kim-PC MINGW64 /
@@ -9,15 +9,15 @@ $ cd d:
 
 kim@kim-PC MINGW64 /d
 $ ls
-'!$ZcG'/                  'GitHub ÆäÀÌÁö ÀÛ¾÷-GitHub µµ¿ò¸».url'
+'!$ZcG'/                  'GitHub í˜ì´ì§€ ì‘ì—…-GitHub ë„ì›€ë§.url'
 '$RECYCLE.BIN'/            KIM-PC/
  _2020.04.23.programing/   MediaID.bin
  _backup/                  Pictures/
  _installWin/             'Sublime Text Backups'/
  _PortableGit/            'System Volume Information'/
  _saveGame/                WindowsImageBackup/
- _saveOthor/               ¹é¾÷/
- _xampp/                   ÇÁ·Î±×·¥/
+ _saveOthor/               ë°±ì—…/
+ _xampp/                   í”„ë¡œê·¸ë¨/
 
 kim@kim-PC MINGW64 /d
 $ mkdir workspace
@@ -88,7 +88,7 @@ $ clear
 
 
 ========================================================
-githup ÆÄÀÏ º¯°æÈÄ ¼­¹ö commit ³»¿ë ¼öÁ¤ÈÄ ¾÷·Îµå
+githup íŒŒì¼ ë³€ê²½í›„ ì„œë²„ commit ë‚´ìš© ìˆ˜ì •í›„ ì—…ë¡œë“œ
 ========================================================
 
 kim@kim-PC MINGW64 /d/workspace/pinetree822.github.io
@@ -107,8 +107,8 @@ kim@kim-PC MINGW64 /d/workspace/pinetree822.github.io/pinetree822.github.io (mas
 $ git add '_config.yml'
 
 kim@kim-PC MINGW64 /d/workspace/pinetree822.github.io/pinetree822.github.io (master)
-$ git commit -m '¼öÁ¤ÇÑ ³»¿ëÀ» ±â·Ï'
-[master 880f796] ¼öÁ¤ÇÑ ³»¿ëÀ» ±â·Ï
+$ git commit -m 'ìˆ˜ì •í•œ ë‚´ìš©ì„ ê¸°ë¡'
+[master 880f796] ìˆ˜ì •í•œ ë‚´ìš©ì„ ê¸°ë¡
  1 file changed, 5 insertions(+), 4 deletions(-)
 
 kim@kim-PC MINGW64 /d/workspace/pinetree822.github.io/pinetree822.github.io (master)
@@ -130,7 +130,7 @@ $
 
 
 ========================================================
-githup ÆÄÀÏ »ı¼º º¯°æÈÄ commit ÆÄÀÏ³»¿ë ¼öÁ¤ÈÄ git¼­¹ö¿¡ ¾÷·Îµå ÇÑ´Ù.
+githup íŒŒì¼ ìƒì„± ë³€ê²½í›„ commit íŒŒì¼ë‚´ìš© ìˆ˜ì •í›„ gitì„œë²„ì— ì—…ë¡œë“œ í•œë‹¤.
 ========================================================
 kim@kim-PC MINGW64 /d/workspace/pinetree822.github.io/pinetree822.github.io/webdevelop/_posts (master)
 $ ls
@@ -164,25 +164,25 @@ $
 
 
 ========================================================
-client repository ³»¿ëÀ» github¼­¹ö repository¿¡ ¾÷·ÎµåÇÑ´Ù.
+client repository ë‚´ìš©ì„ githubì„œë²„ repositoryì— ì—…ë¡œë“œí•œë‹¤.
 ========================================================
-ÃâÃ³: https://recoveryman.tistory.com/323?category=635733 [È¸º¹¸Ç ºí·Î±×]
+ì¶œì²˜: https://recoveryman.tistory.com/323?category=635733 [íšŒë³µë§¨ ë¸”ë¡œê·¸]
 
-git commit -m "Ä¿¹Ô¸Ş½ÃÁö"
+git commit -m "ì»¤ë°‹ë©”ì‹œì§€"
 
-Ä¿¹Ô À» ÇÏ°í Ä¿¹Ô ¸Ş½ÃÁö¸¦ ÀÔ·ÂÇÕ´Ï´Ù. ¸Ş½ÃÁö´Â ²À ÀÔ·ÂÇØ¾ß ÇÕ´Ï´Ù.
+ì»¤ë°‹ ì„ í•˜ê³  ì»¤ë°‹ ë©”ì‹œì§€ë¥¼ ì…ë ¥í•©ë‹ˆë‹¤. ë©”ì‹œì§€ëŠ” ê¼­ ì…ë ¥í•´ì•¼ í•©ë‹ˆë‹¤.
 
 git status
 
-ÇöÀç ¼öÁ¤µÇ°Å³ª »èÁ¦µÇ°Å³ª »õ·Î ¸¸µé¾îÁø ÆÄÀÏÀÌ ÀÖ´ÂÁö ¾ø´ÂÁö È®ÀÎÇØ º¾´Ï´Ù.
+í˜„ì¬ ìˆ˜ì •ë˜ê±°ë‚˜ ì‚­ì œë˜ê±°ë‚˜ ìƒˆë¡œ ë§Œë“¤ì–´ì§„ íŒŒì¼ì´ ìˆëŠ”ì§€ ì—†ëŠ”ì§€ í™•ì¸í•´ ë´…ë‹ˆë‹¤.
 
 git remote -v
 
-ÇöÀç ¸®¸ğÆ® ÀúÀå¼Ò¸¦ È®ÀÎÇÏ±â À§ÇØ ¸í·É¾î¸¦ ÀÔ·ÂÇØºÃ½À´Ï´Ù. Á¤È®È÷ Á¦ ±êÇãºê ÀúÀå¼Ò¸¦ °¡¸£Å°°í ÀÖ³×¿ä.
+í˜„ì¬ ë¦¬ëª¨íŠ¸ ì €ì¥ì†Œë¥¼ í™•ì¸í•˜ê¸° ìœ„í•´ ëª…ë ¹ì–´ë¥¼ ì…ë ¥í•´ë´¤ìŠµë‹ˆë‹¤. ì •í™•íˆ ì œ ê¹ƒí—ˆë¸Œ ì €ì¥ì†Œë¥¼ ê°€ë¥´í‚¤ê³  ìˆë„¤ìš”.
 
 git push
 
-ÀÌ ¸í·É¾î¸¦ ÀÔ·ÂÇÏ¸é ÀÌÁ¦ ±êÇãºê ºí·Î±×¿¡ ÀÛ¼ºÇß´ø ±ÛÀÌ º¸ÀÌ°Ô µË´Ï´Ù. ±êÇãºê ÀúÀå¼Ò¿¡ Ä¿¹ÔµÈ ÆÄÀÏµéÀ» ¹Ğ¾î³Ö½À´Ï´Ù.
+ì´ ëª…ë ¹ì–´ë¥¼ ì…ë ¥í•˜ë©´ ì´ì œ ê¹ƒí—ˆë¸Œ ë¸”ë¡œê·¸ì— ì‘ì„±í–ˆë˜ ê¸€ì´ ë³´ì´ê²Œ ë©ë‹ˆë‹¤. ê¹ƒí—ˆë¸Œ ì €ì¥ì†Œì— ì»¤ë°‹ëœ íŒŒì¼ë“¤ì„ ë°€ì–´ë„£ìŠµë‹ˆë‹¤.
 
 
 
@@ -310,9 +310,9 @@ Changes to be committed:
 
 
 kim@kim-PC MINGW64 /d/_xampp/htdocs/web (master)
-$ git commit -m "°³ÀÎÆäÀÌÁö È¨ÆäÀÌÁö"
+$ git commit -m "ê°œì¸í˜ì´ì§€ í™ˆí˜ì´ì§€"
 
-[master 793b2ce] °³ÀÎÆäÀÌÁö È¨ÆäÀÌÁö
+[master 793b2ce] ê°œì¸í˜ì´ì§€ í™ˆí˜ì´ì§€
  6 files changed, 700 insertions(+), 1 deletion(-)
  create mode 100644 2020-04-28-github-make-git-and-pinetree822-blog.md
  create mode 100644 2020-04-28-php-cli-test-1.txt
