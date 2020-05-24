@@ -1,0 +1,2208 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HTML-Python 시작1-2</title>
+</head>
+<body>
+
+
+
+==================================================================
+03. 연산자의 종류
+==================================================================
+산술연산자
+-------------------------------------------------------
+>>> ㅊ=5
+>>> ㅊ+ㅊ
+10
+>>> ㅊ-4
+1
+>>> ㅊ*2
+10
+>>> ㅊ/2
+2.5
+>>> ㅊ%2
+1
+>>> c=5
+>>> c-=4
+>>> print(c)
+1
+>>> c+=5
+>>> print(c)
+6
+>>> c*=4
+>>> print(c)
+24
+>>> c/=5
+>>> print(c)
+4.8
+>>> c%=4
+>>> print(c)
+0.7999999999999998
+>>> +c
+0.7999999999999998
+>>> -c
+-0.7999999999999998
+>>> c
+0.7999999999999998
+>>> ++c
+0.7999999999999998
+>>> --c
+0.7999999999999998
+>>>
+
+
+>>> _+1
+1.7999999999999998
+>>> -c						# - 부호를 붙여도 연산으로 간주한다.
+-0.7999999999999998
+>>> _+1						# -0.7999999999999998 + 1
+0.20000000000000018
+>>> _+1
+1.2000000000000002
+>>> _+1
+2.2
+>>> -c
+-0.7999999999999998
+>>> _+1						# -0.7999999999999998 + 1
+0.20000000000000018
+>>>
+>>> -0.7999999999999998 + 1	## -0.7999999999999998 + 1
+0.20000000000000018
+>>>
+
+
+증감연산자
+-------------------------------------------------------
+++ 또는 -- 연산자 없다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+==================================================================
+04. 기본문법(들여쓰기, 주석, 세미콜론)
+==================================================================
+
+> 들여쓰기
+-------------------------------------------------------
+
+파이썬은 들여쓰기가 문법적인 강제사항입니다.
+
+코드 블럭을 구성하기 위해 if, for, class, def 등등 을 작성하면서 나오는 : 다음 아랫줄은 들여쓰기를 해야합니다.
+
+들여쓰기의 방법은 한칸, 두칸, 4칸, 탭 등 여러가지 방식이 있습니다.
+중요한 것은 같은 블록 내에서는 들여쓰기 칸 수가 같아야 합니다.
+공백과 탭을 섞어쓰면 안됩니다.
+
+
+들여쓰기 에러구문 내용
+IndentationError: expected an indented block
+
+
+for i in range(10):
+     print(i)
+     print(i + 1)
+
+
+
+>주석
+-------------------------------------------------------
+
+주석은 코드의 여러 정보를 기록 한다.
+# 로 표시 하고 뒤쪽에 오는글은 실행에서 제외 된다.
+한 라인에 표기한다.
+
+
+>세미콜론
+-------------------------------------------------------
+
+파이썬은 구문이 끝나고 다음 줄로 내려갈 때 세미콜론이 필요 없습니다.
+세미콜론을 붙여도 에러는 나지 않습니다.
+여러 구문을 이어쓸때는 세미콜론을 쓰기도 합니다
+
+>>> print("Hello");print(' ');print('world!')
+Hello
+
+world!
+>>>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+==================================================================
+05. import 기본라이브러리
+==================================================================
+
+python REPL(Read Evaluate Print Loop)을 실행 후 코드 실행
+실행창에서 python.exe
+math는 수학 연산 기본 라이브러리
+sqrt는 제곱근 math라이브러리의 함수
+
+
+# 라이브러리 math를 불러들인다.
+-------------------------------------------------------
+>>> import math
+>>> math.sqrt(81)
+9.0
+>>> math.factorial(5)
+120
+>>>
+
+# 라이브러리 math안에 factorial함수를 불러들인다.
+-------------------------------------------------------
+>>> from math import factorial
+>>> factorial(5)
+120
+>>>
+
+# 라이브러리 math안에 factorial함수를 fac()으로 별칭
+-------------------------------------------------------
+>>> from math import factorial as fac
+>>> fac(5)
+120
+>>>
+
+
+# math 라이브러리의 manual doc 보기
+-------------------------------------------------------
+>>> help(math)
+Help on built-in module math:
+
+NAME
+    math
+
+DESCRIPTION
+    This module provides access to the mathematical functions
+    defined by the C standard.
+
+FUNCTIONS
+    acos(x, /)
+        Return the arc cosine (measured in radians) of x.
+
+    acosh(x, /)
+        Return the inverse hyperbolic cosine of x.
+
+help doc에서 탈출하려면 "q"를 누르면 REPL 실행모드로 전환된다.
+
+
+
+# math 라이브러리 안 factorial함수의 manual doc 보기
+-------------------------------------------------------
+>>> help(math.factorial)
+Help on built-in function factorial in module math:
+
+factorial(x, /)
+    Find x!.
+
+    Raise a ValueError if x is negative or non-integral.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+==================================================================
+06. Scalar 타입(int, float, None, bool)
+==================================================================
+Python은 4가지의 Scalar 타입
+int(정수), float(실수), None(값없음), bool(True, False) 4가지
+
+
+
+1. int - int 는 정수형
+-------------------------------------------------------
+
+prefix ('0b','0o','0x') - 2진수,8진수,16진수
+기본10진수
+
+진수표기
+>>> 10 # 10진수
+10
+>>> 0b10 # 2진수
+2
+>>> 0o10 # 8진수
+8
+>>> 0x10 # 16진수
+16
+>>>
+
+
+타입변환 -> int
+>>>
+>>> int(3.5)
+3
+>>> int(-3.5), int(True), int(False), int("500")
+(-3, 1, 0, 500)
+>>> int(0b100), int(0o100), int(0x100)
+(4, 64, 256)
+>>> int("1000",3) # 1000을 3진수로 표기
+27
+>>>
+
+
+
+2. float
+-------------------------------------------------------
+
+float는 실수형
+>>> 3.123
+3.123
+>>>
+
+
+지수표기법을 적용
+>>> 3e+8, 3e8, 1.672e+2, 1.616e-10
+(3e+8, 3e8, 1.672e+2, 1.616e-10)
+>>>
+
+
+타입변환 -> float
+>>> float(7), float("1.618"), float(True), float(False)
+(7.0, 1.618, 1.0, 0.0)
+>>>
+
+
+int에는 없는 nan(Not a Number), inf(플러스 무한), -inf(마이너스 무한)으로 변환
+>>> float("nan"), float('nan'), float("inf"), float("-inf")
+(nan, nan, inf, -inf)
+>>>
+
+
+실수와 정수의 덧셈은 실수
+>>> 3.0+1
+4.0
+
+
+
+
+
+3. None
+-------------------------------------------------------
+
+None는 값이 없음 / REPL에서는 표시되지 않음
+>>> None # 정상값
+>>>
+>>> none
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'none' is not defined
+>>> NONE
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'NONE' is not defined
+>>>
+
+
+None 비교
+>>> a = None
+>>> a is None
+True
+>>>
+
+
+
+
+4. bool
+-------------------------------------------------------
+
+참(True), 거짓(False)
+첫글자가 대문자
+
+
+int 형태를 bool형으로 변환
+>>> bool(0), bool(1), bool(-1), bool(2)
+(False, True, True, True)
+
+bool 형태를 bool형으로 변환
+>>> bool(True), bool(False)
+(True, False)
+
+None값을 bool형으로 변환
+>>> bool(None)
+False
+
+
+
+null 형태를 bool형으로 변환
+>>> bool(null)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'null' is not defined
+
+>>> bool(true)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'true' is not defined
+
+
+float형을 bool형으로 변환
+>>> bool(.0), bool(0.0), bool(-1.5), bool(0.201);
+(False, False, True, True)
+>>>
+
+
+str(문자형)을 bool형으로 변환
+>>> bool("0"), bool("abcd"), bool("true"), bool("");
+(True, True, True, False)
+>>>
+>>> bool("True"), bool("False");
+(True, True)
+>>>
+
+
+list, set, dictionary 등의 컬렉션 타입을 변환
+>>> bool([]), bool({}), bool([0]), bool({"a":0})
+(False, False, True, True)
+>>>
+
+
+False의 유형들
+
+>>> bool(0), bool(.0), bool(0.0), bool("")
+(False, False, False, False)
+>>> bool(False), bool(None), bool([]), bool({})
+(False, False, False, False)
+>>>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+==================================================================
+07. 관계연산자 + 조건절
+==================================================================
+
+1. 관계연산자(Relational Operators)
+-------------------------------------------------------
+
+== : 좌우 연산자가 같으면 True
+!= : 좌우 연산자가 같지않으면 True
+<  : 왼쪽 연산자가 작으면 True
+>  : 왼쪽 연산자가 크면 True
+<= : 왼쪽 연산자가 작거나 같으면 True
+>= : 왼쪽 연산자가 크거나 같으면 True
+
+
+
+
+2. 조건절 (if)
+-------------------------------------------------------
+
+>>> if True:
+...     print("True는 True")
+... else :
+...     print("True는 False")
+...
+True는 True
+>>>
+
+
+>>> if True: print("True는 True")
+... else: print("True는 False")
+...
+True는 True
+>>>
+
+
+>>> if False: print("False는 True")
+... else: print("False는 False")
+...
+False는 False
+>>>
+
+
+>>> if bool("문자열"): print("\"문자열\"은 True")
+... else: print("\"문자열\"은 False")
+...
+"문자열"은 True
+>>>
+
+
+>>> if '': print("''은 True")
+... else: print("''은 False")
+...
+''은 False
+>>>
+
+
+>>> i = 50
+>>> if i>50: print("50보다 크다")
+... else: print("50보다 작거나 같다")
+...
+50보다 작거나 같다
+>>>
+
+
+>>> i = 50
+>>>
+>>> if i>50:print("50보다 크다.")
+... elif i==50:print("50과 같다.")
+... else:print("50보다 작다.")
+...
+50과 같다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+==================================================================
+08. 반복문
+==================================================================
+
+1. While 문
+-------------------------------------------------------
+
+조건이 참인 동안 계속 반복
+while 문 안에서 조건문 조작한다.
+명시적인 조건문 표현을 해줘야 한다.
+무한루프에 빠질 경우 ctrl + c(Keyboard Interrupt)로 탈출
+
+
+
+명시적으로 0의 조건이 표현
+>>> c=5
+>>>
+>>> while c!=0:				# ( 옳은 표현 )
+...     print(c)
+...     c-=1
+...
+5
+4
+3
+2
+1
+
+
+간접적으로 0의 조건이 표현	# ( 잘못된 표현 )
+>>> c=5
+>>>
+>>> while c:
+...     print(c)
+...     c-=1
+...
+5
+4
+3
+2
+1
+
+
+while/else 문
+>>> i = 0
+>>> while i<6:
+...     i+=1
+...     i
+... else:
+...     print("end")
+...
+1
+2
+3
+4
+5
+6
+end
+>>>
+
+
+
+>>>
+>>> i=0
+>>> while i<5:
+...     i+=1
+...     if i==3:
+...             break
+...     i
+...
+1
+2
+>>>
+
+
+>>>
+>>> i=0
+>>> while i<5:
+...     i+=1
+...     if i==3:
+...             continue
+...     i
+...
+1
+2
+4
+5
+>>>
+
+
+무한루프
+
+while True:
+	print("짠")
+	print("단")
+
+
+
+
+
+2. break 문
+-------------------------------------------------------
+
+순환문(while,for)에서 특정조건 사용한 순환문 탈출에 사용.
+
+input문은 terminal에서 메세지보여주고 값을 받아올때 사용.
+
+
+>>> while True:
+...     response = input('숫자를 입력하세요')
+...     if int(response)%10 == 0 :
+...             print ('10으로 나눈 나머지가 0입니다.')
+...             break
+...
+숫자를 입력하세요3
+숫자를 입력하세요10
+10으로 나눈 나머지가 0입니다.
+
+
+>>> while True:
+...     response = int(input('숫자를 입력하세요'))
+...     if response%10 == 0 :
+...             print ("10으로 나눈 나머지가 0입니다.")
+...             break
+...
+숫자를 입력하세요3
+숫자를 입력하세요10
+10으로 나눈 나머지가 0입니다. 10
+
+
+>>> while True:
+...     response = input('숫자를 입력 : ')
+...     result = int(response) % 10
+...     if result == 0: continue
+...     print("10으로 나눈 나머지는 {}입니다.".format(result))
+...
+숫자를 입력 : 5
+10으로 나눈 나머지는 5입니다.
+숫자를 입력 : 3
+10으로 나눈 나머지는 3입니다.
+숫자를 입력 : 20
+숫자를 입력 : 10
+숫자를 입력 : 0
+숫자를 입력
+
+
+
+
+3. continue 문
+-------------------------------------------------------
+
+반복문 내부에서 continue문 이후에 코드 실행 건너뛰고 다음 반복으로 실행
+
+>>> for i in range(5):
+...     if i % 2 == 0:
+...             continue
+...     print(i)
+...
+1
+3
+>>>
+>>> i=0
+>>> while i < len(range(5)):
+...     if i % 2 == 0 :
+...             i+=1
+...             continue
+...     print(i)
+...     i+=1
+...
+1
+3
+>>>
+>>> i=0
+>>> while i < len(range(5)):
+...     if i%2 != 0 : print(i)
+...     i+=1
+...
+1
+3
+>>>
+
+
+
+
+
+
+
+4. for 문
+-------------------------------------------------------
+
+순차적인 번호를 사용
+
+>>> list(range(5))
+[0, 1, 2, 3, 4]
+
+>>> for i in range(5):
+...     print(i)
+...
+0
+1
+2
+3
+4
+
+>>> words = ["apple", "orange", "banana"]
+>>> for word in words:
+...     print(word)
+...
+apple
+orange
+banana
+>>>
+
+
+>>>
+>>> words = [('apple','good'), ('banana','bad'), ('orange', 'excellent')]
+>>>
+>>> for word in words:
+...     word
+...
+('apple', 'good')
+('banana', 'bad')
+('orange', 'excellent')
+>>>
+
+
+>>> for (word1, word2) in words:
+...     word1
+...
+'apple'
+'banana'
+'orange'
+>>>
+
+
+>>> for i in range(10):
+...     i
+...     if i>5 : break
+...
+0
+1
+2
+3
+4
+5
+6
+
+
+>>>
+>>> for i in range(10):
+...     i
+...     if i>5 : continue
+...     print("------------")
+...
+0
+------------
+1
+------------
+2
+------------
+3
+------------
+4
+------------
+5
+------------
+6
+7
+8
+9
+>>>
+
+
+
+
+
+
+
+
+
+
+5. lambda, tuple, list, map, reduce, filter, range, enumerate, len,함수 기능
+- https://studymake.tistory.com/194?category=645699
+-------------------------------------------------------
+
+
+
+1) lambda함수 - lambda 인자 : 표현식
+-------------------------------------------------------
+
+함수를 한 줄 표현 형식
+인공지능, AutoCAD 프로그램에서 쓰이는 Lisp언어 표현
+
+
+>>> def hap(x,y):
+...     return x+y
+...
+>>> hap(10,20)
+30
+>>>
+>>>
+>>> (lambda x,y:x+y)(10,20)
+30
+>>> hap(10,20), (lambda x,y:x+y)(10,20)
+(30, 30)
+
+
+
+
+2) 튜플(tuple) - 객체들의 묶음이라는 점에서 리스트와 유사
+-------------------------------------------------------
+
+리스트와의 가장 차이점은 튜플은 그 크기나 개별 요소를 전혀 변경시킬 수 없다는 점이다.
+즉, 한 번 생성되고 나면 변경시킬 수 없다. (뒤에서 설명할 immutable sequence 이다.)
+튜플도 인덱싱과 슬라이싱이 가능하고 immutable sequence 들의 공통적인 연산(덧셈과 곱셈)이 가능하다.
+
+
+>>> t1 = () # empty tuple 생성
+>>> t2 = (11,) # tuple의 요소가 하나일 경우 반드시 끝에 콤마(,)를 붙여야 한다.
+>>> t3 = (11, 22)
+>>> t4 = (‘abc’, 11, [22, 33])
+>>> t5 = ( (11,22), (‘hi’, ‘world’))
+>>> t6 = ((True, False))
+
+>>> t2 = 11,
+>>> t3 = 11, 22
+>>> t4 = ‘abc’, 11, [22, 33]
+>>> t5 = (11,22), (‘hi’, ‘world’)
+>>> t6 = (True, False), # 이 경우 마지막에 콤마가 반드시 붙어야 한다.
+
+>>> a,b,c=11,22+33j,True
+>>> a,b,c
+(11, (22+33j), True)
+
+>>> a, b, c = 11, 22+33j, True # 좌변과 우변 모두 (괄호가 생략된) 튜플이다.
+
+
+>>> t = 11,22,33 	# t는 튜플임
+>>> e,f,g = t 		# e=t[0];f=t[1];g=t[2] 와 같다.
+>>> e,f,g
+(11, 22, 33)
+>>> t
+(11, 22, 33)
+
+
+
+
+3) 리스트(list) 생성
+-------------------------------------------------------
+
+리스트도 문자열과 동일한 인덱싱과 슬라이싱이 가능하다.
+mutable sequence에서 사용 가능한 연산(덧셈과 곱셈)을 적용
+
+리스트는 여러 개의 객체를 하나로 묶는 데이터 형이다.
+(엄밀히 말하면 mutable sequence 형임)
+
+기본적으로 대괄호 [..]를 이용하여 묶고자 하는 데이터들을 콤마(,)로 구별하여 나열한다.
+
+
+- list 선언정의: list클래스로 생성, 대괄호로 생성
+>>>
+>>> b = list(); c = []
+>>> type(b), type(c)
+(< class 'list'>, < class 'list'>)
+>>>
+
+
+- list는 0부터 시작하는 인덱스로 접근가능
+>>>
+>>> a = [100,99,33,22]
+>>> a[0]
+100
+>>> a[0], a[-1] type(a), type(a[0])
+(100, 22, < class 'list'>, < class 'int'>)
+>>>
+
+
+- index 범위를 벗어나면 에러가 발생
+>>> a[5]
+Traceback (most recent call last):
+	File "<stdin>", line 1, in <module>
+IndexError:
+	list index out of range
+>>>
+
+
+- list 간 산술연산자 사용
+>>> [1,3,5] + [2,7]
+[1, 3, 5, 2, 7]
+>>> [1, 3, 5, 2, 7] - [2,7]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: unsupported operand type(s) for -: 'list' and 'list'
+>>>
+
+
+- list클래스로 문자열 리스트화
+>>>
+>>> list("아방궁")
+['아', '방', '궁']
+>>>
+
+
+- list 생성시 마지막 원소뒤에 콤마가 있어도 에러가 않남
+>>>
+>>> ['아',
+... '방',
+... '궁',
+... ]
+['아', '방', '궁']
+
+
+
+- list indexing
+>>>
+>>> s = '파이썬에서 리스트 인덱싱은 - 값도 허용합니다.'
+>>> s
+'파이썬에서 리스트 인덱싱은 - 값도 허용합니다.'
+>>> s.split()
+['파이썬에서', '리스트', '인덱싱은', '-', '값도', '허용합니다.']
+>>> s[0]
+'파'
+>>> s[-1]
+'.'
+>>> s[-len(s)]
+'파'
+>>>
+
+>>>
+>>> si = 'show me the money!'.split()
+>>> si
+['show', 'me', 'the', 'money!']
+>>> si[0]
+'show'
+>>> si[-1]
+'money!'
+>>> si[-len(si)]
+'show'
+>>>
+
+
+
+- list slicing
+리스트변수[시작인덱스:종료인덱스:step]
+
+>>>
+>>> s
+'파이썬에서 리스트 인덱싱은 - 값도 허용합니다.'
+>>> s[0:0], s[0:1], s[1:5]
+('', '파', '이썬에서')
+>>> s[0:-1]
+'파이썬에서 리스트 인덱싱은 - 값도 허용합니다'
+>>> s[0:len(s)]
+'파이썬에서 리스트 인덱싱은 - 값도 허용합니다.'
+>>> s[:]
+'파이썬에서 리스트 인덱싱은 - 값도 허용합니다.'
+>>>
+
+
+
+>>>
+>>> si
+['show', 'me', 'the', 'money!']
+>>> si[0:0]
+[]
+>>> si[0:1]
+['show']
+>>> si[0:-1]
+['show', 'me', 'the']
+>>> si[0:len(si)]
+['show', 'me', 'the', 'money!']
+>>> si[:]
+['show', 'me', 'the', 'money!']
+>>>
+
+- step을 활용
+>>>
+>>> s[::2]
+'파썬서리트인싱  도허합다'
+>>> s[::2], si[::2]
+('파썬서리트인싱  도허합다', ['show', 'the'])
+>>>
+
+
+- step을 활용하여 리스트를 reverse
+>>>
+>>> s[::-1]
+'.다니합용허 도값 - 은싱덱인 트스리 서에썬이파'
+>>>
+>>> si[::-1]
+['money!', 'the', 'me', 'show']
+>>>
+
+
+
+
+>>>
+>>> len(s), len(si)
+(26, 4)
+>>>
+>>> s[:3]+s[3:] == s, si[:3]+si[3:] == si
+(True, True)
+>>>
+>>> s[:0], s[:1], s[:2]
+('', '파', '파이')
+>>> si[:0], si[:1], si[:2]
+([], ['show'], ['show', 'me'])
+>>>
+>>>
+>>> s[:3], s[3:]
+('파이썬', '에서 리스트 인덱싱은 - 값도 허용합니다.')
+>>> si[:3], si[3:]
+(['show', 'me', 'the'], ['money!'])
+>>>
+
+
+
+
+
+- 슬라이스를 통한 생성한 변수는 기존 변수와 틀리다.(?버전마다 틀림),is 를 사용한 비교
+
+>>> ## ***주의사항) 버전 마다 차이 있다.***
+>>>
+>>> s = '파이썬에서 리스트 인덱싱은 - 값도 허용합니다.'
+>>> si = s.split()
+>>> si
+['파이썬에서', '리스트', '인덱싱은', '-', '값도', '허용합니다.']
+>>>
+>>>
+>>> s1 = s[:]
+>>> s2 = si[:]
+>>>
+>>> s1
+'파이썬에서 리스트 인덱싱은 - 값도 허용합니다.'
+>>> s2
+['파이썬에서', '리스트', '인덱싱은', '-', '값도', '허용합니다.']
+>>>
+>>> s is s1, si is s2
+(True, False)
+>>>
+>>>
+>>> id(s), id(s1), id(si), id(s2) 			## 메모리값이 str은 같고 list는 틀리다.
+(31476784, 31476784, 4936712, 31472392)
+>>>
+
+
+
+
+- 리스트를 복사 방법
+
+>>>
+>>> s = '파이썬에서 리스트 인덱싱은 - 값도 허용합니다.'
+>>> si = 'show me the money!'.split()
+>>> si
+['show', 'me', 'the', 'money!']
+>>> type(s) , type(si)
+(< class 'str'>, < class 'list'>)
+>>>
+
+.copy()를 사용
+
+>>>
+>>> u = s.copy()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'str' object has no attribute 'copy'
+>>> u = si.copy()
+>>> u
+['show', 'me', 'the', 'money!']
+>>>
+
+
+.list()를 사용
+
+>>>
+>>> v = list(s)
+>>> vi = list(si)
+>>> v
+['파', '이', '썬', '에', '서', ' ', '리', '스', '트', ' ', '인', '덱', '싱', '은', ' ', '-', ' ', '
+값', '도', ' ', '허', '용', '합', '니', '다', '.']
+>>> vi
+['show', 'me', 'the', 'money!']
+>>>
+
+
+
+
+a. 리스트의 요소는 서로 다른 데이터타입 형일 수 있다.
+
+>>> la = [11,22,33]
+>>> lb = ['life','is','short']
+>>> lc = [True, 'hi', 33.4, 2-3j]
+>>> ld = []
+>>> le = [ [11,22], [33, 44, 55] ] # 중첩된 리스트
+>>> la
+[11, 22, 33]
+>>> lb
+['life', 'is', 'short']
+>>> lc
+[True, 'hi', 33.4, (2-3j)]
+>>> ld
+[]
+>>> le
+[[11, 22], [33, 44, 55]]
+
+
+
+
+b. 리스트를 만드는 또 다른 방법은 list comprehension 을 이용
+-------------------------------------------------------
+
+>>> squares = []
+>>> for x in range(10):
+...     squares.append(x**2)
+...
+>>> squares
+[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+
+
+ map()과 익명 함수를 이용
+
+>>> squares = list(map(lambda x: x**2, range(10)))
+>>>
+>>> squares
+[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+>>>
+
+
+
+c. list의 내장 메소드들
+-------------------------------------------------------
+
+append(x) 		- x를 리스트의 마지막 요소로 추가한다.
+extend(list) 	- list의 요소로 원 리스트를 확장한다.
+insert(i, x) 	- x를 i번째 위치로 끼워 넣는다.
+remove(x) 		- x와 같은 첫 번째 요소를 삭제한다.
+pop() 			- 마지막 요소를 삭제하고 반환한다.
+pop(i) 			- i번째 요소를 삭제하고 반환한다.
+clear() 		- 모든 요소를 삭제한다.
+index(x) 		- x와 같은 첫 번째 요소의 인덱스를 반환한다.
+count(x) 		- x와 같은 요소들의 개수를 구한다.
+sort() 			- 정렬
+reverse() 		- 역순으로 배열
+copy() 			- 얕은 복사본을 반환한다
+
+
+>>>
+>>> a=[66.22, 33,333,1,333, 1234.5]
+>>> print(a.count(333), a.count(33), a.count('x'))
+2 1 0
+>>>
+>>> a.insert(2,-1)
+>>> a
+[66.22, 33, -1, 333, 1, 333, 1234.5]
+>>>
+>>> a.append(3334)
+>>> a
+[66.22, 33, -1, 333, 1, 333, 1234.5, 3334]
+>>>
+>>> a.index(333)
+3
+>>>
+>>> a.remove(333)
+>>> a
+[66.22, 33, -1, 1, 333, 1234.5, 3334]
+>>>
+>>> a.reverse()
+>>> a
+[3334, 1234.5, 333, 1, -1, 33, 66.22]
+>>>
+>>> a.sort()
+>>> a
+[-1, 1, 33, 66.22, 333, 1234.5, 3334]
+>>>
+>>> a.pop()
+3334
+>>> a
+[-1, 1, 33, 66.22, 333, 1234.5]
+>>>
+>>> a.pop(2)
+33
+>>> a
+[-1, 1, 66.22, 333, 1234.5]
+>>>
+
+>>>
+>>> x=list(range(5))
+>>> x
+[0, 1, 2, 3, 4]
+>>> x.append([5,6])
+>>> x
+[0, 1, 2, 3, 4, [5, 6]]
+>>>
+>>> x=list(range(5))
+>>> x.extend([5,6])
+>>> x
+[0, 1, 2, 3, 4, 5, 6]
+>>>
+>>> x.extend([5.6])
+>>> x
+[0, 1, 2, 3, 4, 5, 6, 5.6]
+>>>
+>>>
+>>> x.extend(1.1)
+Traceback (most recent call last):  File "<stdin>", line 1, in <module>
+TypeError: 'float' object is not iterable
+>>>
+
+
+
+
+
+4) map(함수, 리스트)
+-------------------------------------------------------
+
+리스트로부터 원소를 하나씩 꺼내서 함수를 적용시킨 다음, 그 결과를 새로운 리스트에 담아준답니다
+
+>>> map(lambda x:x**2,range(2))       # 파이썬 2
+< map object at 0x0000000002D464C8>
+>>>
+>>> list(map(lambda x: x**2, range(5))) #파이썬 2,3
+[0, 1, 4, 9, 16]
+
+
+
+
+
+
+5) reduce() - reduce(함수, 순서형 자료)
+-------------------------------------------------------
+
+순서형 자료(문자열, 리스트, 튜플)의 원소들을 함수에 누적 적용
+
+>>>
+>>> from functools import reduce   # 파이썬 3에서는 써주셔야 해요
+>>> reduce(lambda x,y:x+y,[0,1,2,3,4])
+10
+>>>
+>>> reduce(lambda x,y:y+x, 'abcde')
+'edcba'
+>>>
+ba
+cba
+dcba
+edcba
+
+
+
+6) filter() - filter(함수, 리스트)
+-------------------------------------------------------
+
+리스트에 들어있는 원소들을 함수에 적용시켜서 결과가 참인 값들로 새로운 리스트를 만들어줍니다.
+
+
+>>> filter(lambda x: x < 5, range(10))       	# 파이썬 2
+[0, 1, 2, 3, 4]
+>>>
+>>> filter(lambda x:x<5, range(10)) 			# 파이썬2
+< filter object at 0x0000000002D464C8>
+>>>
+>>> list(filter(lambda x:x<5, range(10))) 		# 파이썬2,3
+[0, 1, 2, 3, 4]
+>>>
+
+
+>>>
+>>> filter(lambda x: x % 2, range(10))        # 파이썬 2
+[1, 3, 5, 7, 9]
+>>>
+>>> filter(lambda x: x%2, range(10)) #파이썬2
+< filter object at 0x0000000002D46448>
+>>> list(filter(lambda x:x%2, range(10))) #파이썬2,3
+[1, 3, 5, 7, 9]
+>>>
+
+
+
+
+
+7) range([start=0,][stop],step=1]])
+range(시작인덱스[,끝인덱스,증가값=1])
+-------------------------------------------------------
+
+연속된 숫자(정수) / 순차적인 번호 사용
+range() 함수의 결과는 반복가능(iterable)하기 때문에 for문을 사용해 출력할 수 있다.
+
+
+>>> list(range(-1,1))
+[-1, 0]
+
+>>> list(range(0,-1), range(0,0)), list(range(0,1)), list(range(0,2))
+[], [], [0], [0, 1]
+>>> list(range(1,2)) # 0, 1, 2
+[1]
+>>> list(range(1,3)) # 0, 1, 2
+[1, 2]
+>>> list(range(2,1))
+[]
+
+>>> list(range(3,10))
+[3, 4, 5, 6, 7, 8, 9]
+>>> list(range(10))
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+>>> list(range(0,10))
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+>>> list(range(1,10))
+[1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+range(stop)
+range(10)은 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 숫자를 생성
+
+range(start, stop)
+range(1, 11)은 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 숫자를 생성
+
+range(start, stop, step)
+range(0, 20, 2)은 0, 2, 4, 6, 8, 10, 12, 14, 16, 18 생성
+range(20, 0, -2)은 20, 18, 16, 14, 12, 10, 8, 6, 4, 2 생성
+
+
+
+
+
+
+8) enumerate(열거) 함수
+-------------------------------------------------------
+https://wayhome25.github.io/python/2017/02/24/py-07-for-loop/
+
+자료형(리스트, 튜플, 문자열)을 인덱스와 enumerate 객체를 리턴
+
+
+>>>
+>>> data = enumerate((1,2,3))
+>>> for i, value in data:
+...     print(i, ":", value)
+...
+0 : 1
+1 : 2
+2 : 3
+>>>
+>>> data = enumerate({1,2,3})
+>>> for i, value in data:
+...     print(i, ":", value)
+...
+0 : 1
+1 : 2
+2 : 3
+>>>
+>>> data = enumerate([1,2,3])
+>>> for i, value in data:
+...     print(i, ":", value)
+...
+0 : 1
+1 : 2
+2 : 3
+>>>
+>>> el1 = {'이름':'아빠', '나이':53}
+>>> data = enumerate(el1)
+>>> for i, key in data:
+...     print(i, ":", key, "=", el1[key])
+...
+0 : 이름 = 아빠
+1 : 나이 = 53
+>>>
+>>>
+>>> data = enumerate("엉덩방아 원숭이의 하루")
+>>> for i, value in data:
+...     print(i, ":", value)
+...
+0 : 엉
+1 : 덩
+2 : 방
+3 : 아
+4 :
+5 : 원
+6 : 숭
+7 : 이
+8 : 의
+9 :
+10 : 하
+11 : 루
+>>>
+>>>
+>>> el1 = ['일', '월', '화', '수', '목', '금', '토']
+>>> for  idx, week in enumerate(el1):
+...     print('weekNum : {}, weekDay : {}'.format(idx, week))
+...
+weekNum : 0, weekDay : 일
+weekNum : 1, weekDay : 월
+weekNum : 2, weekDay : 화
+weekNum : 3, weekDay : 수
+weekNum : 4, weekDay : 목
+weekNum : 5, weekDay : 금
+weekNum : 6, weekDay : 토
+>>>
+>>> el1 = ['일', '월', '화', '수', '목', '금', '토']
+>>> for idx, week in enumerate(el1, start=1):
+...     print('weekNum : {}, weekDay : {}'.format(idx, week))
+...
+weekNum : 1, weekDay : 일
+weekNum : 2, weekDay : 월
+weekNum : 3, weekDay : 화
+weekNum : 4, weekDay : 수
+weekNum : 5, weekDay : 목
+weekNum : 6, weekDay : 금
+weekNum : 7, weekDay : 토
+>>>
+
+-----------------[ web상 예제 작동이 안됨]------------
+https://dpdpwl.tistory.com/43
+## 인형의수 N를 입력
+## 라이언인형의 수 K를 입력
+N,K = map(int, input().split())
+## 인형들의 집합 arr을 입력
+arr = input().split()
+
+## 라이언이 K개 미만(이하?)일경우 예외처리
+## 라이언이 K개 이상일경우 enumerate로 라이언 인형의 위치배열
+if arr.count('1') < K :
+    print(-1)
+else:
+    lion = [i for i, x in enumerate( arr ) if x == '1']
+    print(min(lion[K-1+j] - lion[j] + 1 for j in range(len(lion)-K+1)))
+## 인형의 배열 arr에서 if x=='1' 으로 라이언 인형만 골라내여 lion배열을 만든다
+## 그리고 만들어진 lion 배열의 K차이만큼의 인덱스중 가장 최소값을 출력하면 정답.
+-----------------[ web상 예제 작동이 안됨]------------
+
+
+
+
+
+
+
+9) len(s) 입력값 s 길이나 요소의 전체개수
+-------------------------------------------------------
+
+>>> len("python"), len("한글"), len([1,2,3])
+6, 2, 3
+>>> len((1,'a')), len([[1,2],3,4]) # 중첩리스트포함
+2, 3
+>>> len('')
+0
+>>> len('  ')
+2
+>>> len(0)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: object of type 'int' has no len()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+==================================================================
+09. String
+==================================================================
+
+1. 문자열(str)
+-------------------------------------------------------
+
+글자의 Unicode 코드로 이루어진 불변한 순서있는 집합
+"" (쌍따옴표), ''(작은따옴표) 모두 사용가능
+"' 와같이 혼용 불가능
+
+>>>
+>>> "쌍따옴표 문자열"
+'쌍따옴표 문자열'
+>>> '홑따옴표 문자열'
+'홑따옴표 문자열'
+
+>>> "혼영하면 에러'
+  File "< stdin>", line 1    "혼영하면 에러'
+SyntaxError: EOL while scanning string literal
+>>>
+
+>>>
+>>> "It's a good thing"
+"It's a good thing"
+>>> '"Yes", he said, "I agree!"'
+'"Yes", he said, "I agree!"'
+>>>
+
+>>> "abc" "def"
+'abcdef'
+>>> "abc"       "def"
+'abcdef'
+>>> ["abc"
+... "def",
+... "ghi"]
+['abcdef', 'ghi']
+>>>
+
+
+
+
+2. 멀티라인 입력값
+-------------------------------------------------------
+
+여러열 문자를 입력할때는 """ 큰따옴표 3개나, ''' 작은따옴표 3개를 입력
+\n 으로 표시되는 부분이 newline문자로 열을 바꿔주는 문자
+시스템상에서 기본 newline문자는 Mac과 Linux \n 이지만, Windows에서는 \r\n 입니다.
+하지만 Windows에서도 newline문자로 \n이 찍힌다.
+
+>>>
+>>> """ 이것은
+... 멀티라인
+... 입력입니다."""
+' 이것은\n멀티라인\n입력입니다.'
+>>>
+>>> ''' 이것도
+... 멀티라인
+... 입력입니다.'''
+' 이것도\n멀티라인\n입력입니다.'
+>>>
+
+
+
+
+3. 이스케이프 문자
+-------------------------------------------------------
+
+특수문자 앞에 \ 로 붙여 입력가능하게 하는 문자
+
+
+1) 특수문자 종류
+
+\newline - Backslash and newline ignored
+print("line1 \line2 \line3")
+line1 line2 line3
+
+\\ - Backslash (\)
+print("\\")
+\
+
+\' - Single quote (')
+print('\'')
+'
+
+\" - Double quote (")
+print("\"")
+"
+
+\a - ASCII Bell (BEL)
+print("\a")
+
+\b - ASCII Backspace (BS)
+print("Hello \b World!")
+Hello  World!
+
+
+\f - ASCII Formfeed (FF)
+print("Hello \f World!")
+Hello World!
+
+\n - ASCII Linefeed (LF)
+print("Hello \n World!")
+Hello
+ World!
+
+\r - ASCII Carriage Return (CR)
+print("Hello \r World!")
+Hello
+ World!
+
+\t - ASCII Horizontal Tab (TAB)
+print("Hello \t World!")
+Hello      World!
+
+\v - ASCII Vertical Tab (VT)
+print("Hello \v World!")
+Hello  World!
+
+\ooo - Character with octal value ooo
+print("\110\145\154\154\157\40\127\157\162\154\144\41")
+Hello World!
+
+\xhh - Character with hex value hh
+print("\x48\x65\x6c\x6c\x6f\x20\x57\x6f\x72\x6c\x64\x21")
+Hello World!
+
+
+\N{name} - 유니 코드 데이터베이스에서 name이라는 이름의 문자
+\uxxxx - 16비트의 4개의 16진수값 xxxx
+\Uxxxxxxxx - 32비트의 8개의 16진수값 xxxxxxxx
+
+
+
+
+2) escape 문자를 - print() 함수 적용시
+
+>>>
+>>> a = "이스케이프 문자 \n 라인이 바뀜 \\ 쌍따옴표를 또 쓰기 \"\" "
+>>> print(a)
+이스케이프 문자
+ 라인이 바뀜 \ 쌍따옴표를 또 쓰기 ""
+>>>
+
+escape 문자를 - 변수이름 바로 적용시
+>>>
+>>> a = "이스케이프 문자 \n 라인이 바뀜 \\ 쌍따옴표를 또 쓰기 \"\" "
+>>> a
+'이스케이프 문자 \n 라인이 바뀜 \\ 쌍따옴표를 또 쓰기 "" '
+
+
+
+3) 이스케이프 문자를 통해 유니코드 문자열을 입력
+
+>>>
+>>> 'Vi er s\u00e5 glad for \u00e5 h\u00f8re og l\u00e6re om Python!'
+'Vi er så glad for å høre og lære om Python!'
+>>>
+
+
+4)  유니코드 문자열을 16진수로 바로 입력시
+
+>>>
+>>> '\xe5'
+'å'
+>>>
+
+
+
+5) 이스케이프 문자를 막는 raw문자열을 문자열 앞에 r 을 붙여 만들 수 있다
+
+>>>
+>>> a = "이스케이프 문자 \n 라인이 바뀜 \\ 쌍따옴표를 또 쓰기 \"\" "
+>>> print(a)
+이스케이프 문자
+ 라인이 바뀜 \ 쌍따옴표를 또 쓰기 ""
+>>>
+>>> a = r"이스케이프 문자 \n 라인이 바뀜 \\ 쌍따옴표를 또 쓰기 \"\" "
+>>> a
+'이스케이프 문자 \\n 라인이 바뀜 \\\\ 쌍따옴표를 또 쓰기 \\"\\" '
+>>> print(a)
+이스케이프 문자 \n 라인이 바뀜 \\ 쌍따옴표를 또 쓰기 \"\"
+>>>
+
+
+
+
+4. 파이썬 문자열의 곱셈과 덧셈
+ - https://studymake.tistory.com/178
+-------------------------------------------------------
+
+>>>
+>>> "My name is "+"Salesio."
+'My name is Salesio.'
+>>> q = "ipython"
+>>> r = " is useful"
+>>> s = q + r
+>>> print(s)
+ipython is useful
+>>>
+>>> s= 'Life is long'
+>>> s= s[:8] + 'short.'
+>>> print(s)
+Life is short.
+>>>
+>>> "blah " * 5
+'blah blah blah blah blah '
+>>> '=' * 50
+'=================================================='
+>>>
+
+
+5. 파이썬 문자열의 인덱싱과 슬라이싱
+-------------------------------------------------------
+ - https://studymake.tistory.com/177
+
+>>> s문자열의 [0:10] ~ [-11:-1] 문자열 인덱스
+>>> s = "Hello World"
+>>> s[0], s[-11], s[6], s[-6],' => ', s[10], s[-1], s[-2], s[0]
+('H', 'H', 'W', ' ', ' => ', 'd', 'd', 'l', 'H')
+
+>>>
+>>> a="python is the best"
+>>> b=a[0:6]
+>>> print(b)
+python
+>>>
+
+>>> print(c=a[7:])
+Traceback (most recent call last):  File "<stdin>", line 1, in <module>
+TypeError: 'c' is an invalid keyword argument for print()
+>>> c=a[7:]
+>>> print(c)
+is the best
+>>>
+
+
+
+>>> f=a[:5]
+>>> print(f)
+pytho
+>>> f=a[:-5]
+>>> print(f)
+python is the
+>>>
+>>>
+>>> a[0] = x
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'x' is not defined
+>>>
+
+
+
+
+
+6. 타입변환
+-------------------------------------------------------
+
+int, float -> str 변환
+
+>>>
+>>> str(396)
+'396'
+>>> str(5.52)
+'5.52'
+SyntaxError: invalid syntax
+>>> str(6.02e10)
+'60200000000.0'
+>>> str(6.02e20)
+'6.02e+20'
+>>> str(5.5.5)
+  File "< stdin>", line 1
+    str(5.5.5)
+            ^
+>>>
+
+
+
+7. 컬렉션 접근
+-------------------------------------------------------
+
+String도 List와 같은 Collection 처럼 접근
+[문자열인덱스 숫자] 형식으로 접근
+
+>>>
+>>> s='abcdefghi'
+>>> s[2]
+'c'
+>>>
+
+
+
+8. String 여러가지 메소드
+-------------------------------------------------------
+
+문자열을 다양하게 변환하며 활용
+
+
+1) type : 객체 형식을 확인 사용가능
+
+>>>
+>>> type("문자열")
+< class 'str'>
+>>>
+
+
+2) join : 문자열을 합치는데 사용 / 구분자가 앞에서 사용
+
+>>>
+>>> ','.join(['a','b','cde'])
+'a,b,cde'
+>>>
+
+
+3) split : join과 반대 / 문자열을 구분자로 나누어 리스트로 반환
+
+>>>
+>>> 'a,b,cde'.split(',')
+['a', 'b', 'cde']
+>>>
+
+
+4) partition : 구분자로 나누어 tuple형으로 반환
+
+>>>
+>>> departure, _, arrival = "Seattle-Seoul".partition('-')
+>>> departure
+'Seattle'
+>>> _
+'-'
+>>> arrival
+'Seoul'
+>>>
+
+
+5) format : 문자를 다양한 형태로 포맷팅하는데 사용
+
+a. 인덱스 형으로 format을 사용하는 예제
+
+>>>
+>>> "Name: {}, Age: {}".format("철수", 13)
+'Name: 철수, Age: 13'
+>>>
+>>>
+>>> "Name: {0}, Age: {1}".format("철수", 15)
+'Name: 철수, Age: 15'
+>>> "Name: {1}, Age: {0}".format("철수", 15)
+'Name: 15, Age: 철수'
+>>>
+>>> "Name: {0}, Age: {1}: {0}의 나이가".format("민호", 17)
+'Name: 민호, Age: 17: 민호의 나이가'
+>>>
+
+
+b. 키워드 형으로 format을 사용하는 예제
+
+>>>
+>>> "Name: {name}, Age: {age}: {name}의 정보".format(name="길동", age=23)
+'Name: 길동, Age: 23: 길동의 정보'
+>>>
+
+
+c. 리스트를 넘기고 index로 접근하는 format예제
+
+>>>
+>>> pos = [12.5, 35, 90]
+>>> "A의 좌표는 x = {p[0]}, y = {p[1]}, z = {p[2]}".format(p=pos)
+'A의 좌표는 x = 12.5, y = 35, z = 90'
+>>>
+>>> pos = [12.5, 35, 90]
+>>> "A의 좌표는 x = {pos[0]}, y = {pos[1]}, z = {pos[2]}".format(pos)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+KeyError: 'pos'
+>>>
+
+
+d. module을 넘겨 활용하는 format 예제
+
+>>>
+>>> import math
+>>>
+>>> '수학에서 파이 = {m.pi}'.format(m=math)
+'수학에서 파이 = 3.141592653589793'
+>>>
+
+
+6) capitalize: 첫 글자를 대문자로 변환 나머지 문자 소문자 변환
+
+>>>
+>>> a = "abcDef"
+>>> a.capitalize()
+'Abcdef'
+>>>
+>>> a
+'abcDef'
+>>>
+
+
+7) strip : 좌우 공백을 제거
+
+>>>
+>>> s = "     abc   "
+>>> s.strip()
+'abc'
+>>> s
+'     abc   '
+>>>
+
+
+8) len : Str함수는 아니며, 일반 내장함수입니다.
+문자열 길이 또는 컬렉션형의 길이
+
+>>>
+>>> len("abcd12345abcdefg")
+16
+>>>
+
+>>>
+>>> rainbow = ["빨","주","노","초","파","남","보"]
+>>> for i in range(len(rainbow)):
+...     color = rainbow[i]
+...     print('{}번째 색은 {}'.format(i+1, color)))
+...
+1번째 색은 빨
+2번째 색은 주
+3번째 색은 노
+4번째 색은 초
+5번째 색은 파
+6번째 색은 남
+7번째 색은 보
+>>>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+==================================================================
+10. Bytes
+==================================================================
+
+유니코드가 아닌 문자열을 사용하는 것과 유사함.
+원시 이진 데이터로 사용되어지거나 1바이트 문자로 고정을 위해 사용
+bytes HTTP 응답과 같은 파일과 네트워크 리소스는 바이트 스트림으로 전송
+유니 코드 문자열과 상호변환
+
+
+
+1. bytes 사용방법
+-------------------------------------------------------
+
+1) 문자열 앞에 b를 입력
+
+>>>
+>>> b = b'abcde' # 접두어에 b가 오면 byte라 암시
+>>> b
+b'abcde'
+>>> print(b)
+b'abcde'
+>>> type(b)
+< class 'bytes'>
+>>>
+
+
+2) split을 하여도 내부 원소는 bytes형태
+
+>>>
+>>> s = b'abc def ghi' # 접두어에 b가 오면 byte라 암시
+>>> s.split()
+[b'abc', b'def', b'ghi']
+>>>
+
+
+
+2. str to bytes, bytes to str 타입변환
+-------------------------------------------------------
+
+1) encode - 문자열을 encode하면 byte형으로 변환
+
+>>>
+>>> s = 'Vi er så glad for å høre og lære om Python!'
+>>> b=s.encode('utf-8')
+>>> b
+b'Vi er s\xc3\xa5 glad for \xc3\xa5 h\xc3\xb8re og l\xc3\xa6re om Python!'
+>>>
+
+
+
+2) decode - byte형을 decode하면 문자열로 변환
+
+>>>
+>>> b.decode('utf-8')
+'Vi er så glad for å høre og lære om Python!'
+>>>
+
+
+
+
+
+
+
+
+
+
+
+==================================================================
+11. mutable(값이변함)과 immutable(값이불변) 객체
+==================================================================
+출처: https://ledgku.tistory.com/54 [견우와 직녀]
+
+
+1. mutable과 immutable 객체
+-------------------------------------------------------
+숫자, 문자열, 튜플은 변경이 불가능하고 리스트와 딕셔너리는 변경이 가능
+
+
+❈ 객체 구분 표
+
+class		설명										구분
+
+list		mutable 한 순서가 있는 객체 집합			mutable
+set			mutable 한 순서가 없는 고유한 객체 집합	mutable
+dict		key와 value가 맵핑된 객체, 순서 없음		mutable
+
+bool		참,거짓									immutable
+int			정수										immutable
+float		실수										immutable
+tuple		immutable 한 순서가 있는 객체 집합		immutable
+str			문자열									immutable
+frozenset	immutable한 set							immutable
+
+일반 user가 작성한 class도 대부분 mutable 한 객체
+
+immutable한 클래를 만들기 위해서는 특별한 방법이 필요
+https://stackoverflow.com/questions/4828080/how-to-make-an-immutable-object-in-python
+
+
+>>>
+>>> a = [1,2,3]
+>>> id(a) 			## a 의 메모리 주소값을 반환
+31414088
+>>> a[0] = 5		## 리스트 a 의 0번째 값을 변경
+>>> a
+[5, 2, 3]
+>>> id(a) 			## a 의 주소값은 변동되지 않는다.
+31414088
+>>>
+
+>>>
+>>> x = {1,2,3}
+>>> x
+{1, 2, 3}
+>>> id(x)
+31632520
+>>> x|={4,5,6}			## 연산자 |= 는 set에서 or연산이나 합집합이다.
+>>> x
+{1, 2, 3, 4, 5, 6}
+>>> id(x)				## x 의 주소값은 변동되지 않는다.
+31632520
+>>>
+
+>>>
+>>> s = "abc"
+>>> s
+'abc'
+>>> id(s)
+31291696
+>>> s[0]
+'a'
+>>> s[0] = d
+Traceback (most recent call last): File "<stdin>", line 1, in <module>
+NameError: name 'd' is not defined
+>>> s = 'def'
+>>> s
+'def'
+>>> id(s)				## s 의 주소값은 변동되었다.
+42052208
+>>>
+
+
+
+
+2. 변수 간 대입
+-------------------------------------------------------
+
+1) mutable한 객체의 변수 간 대입
+
+list의 얕은 복사를 확인
+b 에 a를 할당하면 메모리 주소가 할당
+b를 변경하면 같이 a도 바뀜
+mutable한 다른 객체 또한 똑같은 현상
+
+>>>
+>>> a = [1,2,3]
+>>> b = a
+>>> b[0] = 5
+>>>
+>>> a, b
+([5, 2, 3], [5, 2, 3])
+>>>
+>>> id(a), id(b)
+(42051592, 42051592)
+>>>
+
+
+2) immutable한 객체의 변수간 대입
+
+>>>
+>>> a = "abc"
+>>> b = a
+>>> a, b
+('abc', 'abc')
+>>> id(a), id(b)
+(31291696, 31291696)
+>>>
+>>> b = "abcd"
+>>> a, b
+('abc', 'abcd')
+>>> id(a), id(b)
+(31291696, 42052272)
+>>>
+
+
+3) 얕은 복사(shallow copy)
+
+list의 슬라이싱을 통한 새로운 값을 할당
+슬라이싱을 통해서 값을 할당하면 새로운 id가 부여된다.
+
+>>>
+>>> a = [1,2,3]
+>>> b = a[:]
+>>> a, b
+([1, 2, 3], [1, 2, 3])
+>>> id(a), id(b)
+(42051592, 31414088)
+>>>
+>>> a == b, a is b
+(True, False)
+>>>
+>>> b[0] = 5
+>>> a, b
+([1, 2, 3], [5, 2, 3])
+>>>
+
+
+
+리스트안에 리스트 mutable객체 안에 mutable객체인 경우 문제
+
+>>>
+>>> a = [[1,2],[3,4]]
+>>> b = a[:]
+>>>
+>>> id(a), id(b) 						   ## id(a)와id(b) 주소값은 다르다
+(42051848, 31424584)
+>>>
+>>> id(a[0]), id(b[0]), id(a[1]), id(b[1]) ## 내부의 객체 a[0],b[0]은 같은 주소값
+(42051720, 42051720, 42051784, 42051784)
+>>>
+>>>
+>>> a[0] = [8,9] 			## 재할당
+>>> a, b
+([[8, 9], [3, 4]], [[1, 2], [3, 4]])
+>>>
+>>> id(a[0]),id(b[0]) 		## 메모리 주소도 변경
+(31424584, 42051592)
+>>>
+>>>
+>>> a[1].append(5) 			## a[1] 에 값을 변경하면 b[1]도 따라 변경
+>>> a, b
+([[8, 9], [3, 4, 5]], [[1, 2], [3, 4, 5]])
+>>> id(a[1]), id(b[1])
+(31414088, 31414088)
+>>>
+
+>>>
+>>> import copy
+>>>
+>>> a = [[1,2], [3,4]]
+>>> b = copy.copy(a)
+>>> a,b
+([[1, 2], [3, 4]], [[1, 2], [3, 4]])
+>>>
+>>> a[1].append(5)
+>>> a,b
+([[1, 2], [3, 4, 5]], [[1, 2], [3, 4, 5]])
+>>>
+
+
+
+3) 깊은 복사(deep copy)
+
+copy 클래스를 import
+copy.deepcopy메소드로 구현
+내부에 객체들까지 모두 새롭게 copy 되는 것
+
+>>> import copy
+>>>
+>>> a = [[1,2],[3,4]]
+>>> b = copy.deepcopy(a)
+>>> a,b
+([[1, 2], [3, 4]], [[1, 2], [3, 4]])
+>>> id(a), id(b)
+(31414088, 31424584)
+>>> id(a[0]), id(b[0]), id(a[1]), id(b[1])
+(42051848, 42051912, 42051592, 42053256)
+>>>
+>>> a is b
+False
+>>> a[0] is b[0], a[1] is b[1]
+(False, False)
+>>>
+>>> a[1].append(5)
+>>> a,b
+([[1, 2], [3, 4, 5]], [[1, 2], [3, 4]])
+>>>
+
+
+
+
+
+</body>
+</html>

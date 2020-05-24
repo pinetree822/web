@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HTML-Python 시작1-5</title>
+</head>
+<body>
+
+==================================================================
+18. for in 반복문, Range, enumerate
+https://docs.python.org/3/library/itertools.html
+https://www.w3schools.com/python/python_iterators.asp
+https://dojang.io/mod/page/view.php?id=2405
+
+출처: https://rfriend.tistory.com/459 [R, Python 분석과 프로그래밍의 친구 (by R Friend)]
+itertools를 활용한 리스트 원소를 n번 반복하여 새로운 리스트 만들기
+==================================================================
+for in 문 형식 - 유일한 for문
+
+for item in iterable:
+	반복할 구문
+-------------------------------------------------------
+
+
+>>> # 튜플형
+>>> mytuple = ("apple", "banana", "cherry")
+>>> myit = iter(mytuple)
+>>> for i in myit:
+...     print(i)
+...
+apple
+banana
+cherry
+>>>
+
+>>> mytuple = ("apple", "banana", "cherry")
+>>> myit = iter(mytuple)
+>>> print(next(myit))
+apple
+>>> print(next(myit))
+banana
+>>> print(next(myit))
+cherry
+>>> print(next(myit))
+Traceback (most recent call last):
+  File "< stdin>", line 1, in < module>
+StopIteration
+>>>
+
+>>> mytuple = ("apple", "banana", "cherry")
+>>>
+>>> for x in mytuple:
+...   print(x)
+...
+apple
+banana
+cherry
+>>>
+
+
+
+>>> # 문자형
+>>> mystr = "banana"
+>>> myit = iter(mystr)
+>>>
+>>> print(next(myit))
+b
+>>> print(next(myit))
+a
+>>> print(next(myit))
+n
+>>> print(next(myit))
+a
+>>> print(next(myit))
+n
+>>> print(next(myit))
+a
+>>>
+
+>>>
+>>> mystr = "banana"
+>>>
+>>> for x in mystr:
+...   print(x)
+...
+b
+a
+n
+a
+n
+a
+>>>
+
+>>> # 바이트형
+>>> var_byte = b'abcdef'
+>>> for i in var_byte :
+...     print(i)
+...
+97
+98
+99
+100
+101
+102
+>>>
+
+
+-------------------------------------------------------
+이터레이터 만들기
+https://www.w3schools.com/python/python_iterators.asp
+-------------------------------------------------------
+
+>>>
+>>> [1,2,3].__iter__()
+< list_iterator object at 0x0000000001F4F4C8>
+>>> [1,2,3].__iter__().__next__()
+1
+>>> [1,2,3].__iter__().__next__()
+1
+>>> [1,2,3].__iter__().__next__()
+1
+>>>
+
+>>>
+>>>
+>>> aa = [1,2,3].__iter__()
+>>> aa.__next__()
+1
+>>> aa.__next__()
+2
+>>> aa.__next__()
+3
+>>> aa.__next__()
+Traceback (most recent call last):  File "< stdin>", line 1, in < module>
+StopIteration
+>>>
+
+
+
+
+>>> # for 문 돌릴시 무한반복이 된다.
+>>> class MyNumbers:
+...     def __iter__(self):
+...             self.a = 1
+...             return self
+...     def __next__(self):
+...             x = self.a
+...             self.a += 1
+...             return x
+...
+>>> myclass = MyNumbers()
+>>> myiter = iter(myclass)
+>>>
+>>> print(next(myiter))
+1
+>>> print(next(myiter))
+2
+>>> print(next(myiter))
+3
+>>> print(next(myiter))
+4
+>>> print(next(myiter))
+5
+>>>
+
+>> ## 종료조건이 없어서 무한 반복한다.
+for x in myiter:
+	print(x)
+
+-------------------------------------------------------
+StopIteration
+>>> # for문시 반복 멈춤 조건 삽입
+
+-------------------------------------------------------
+>>> 3 회 반복 후 중지 :
+class MyNumbers:
+	def __iter__(self):
+		self.a = 1
+		return self
+	def __next__(self):
+		if self.a <= 3:
+			x = self.a
+			self.a += 1
+			return x
+		else:
+			raise StopIteration
+
+myclass = MyNumbers()
+myiter = iter(myclass)
+
+for x in myiter:
+	print(x)
+
+...
+1
+2
+3
+>>>
+
+
+
+
+
+==================================================================
+19.isinstance()함수 - 객체 형태 알아보기
+==================================================================
+
+isinstance(object, type) - isinstance(인스턴스, 클래스/데이터타입)
+지정된 객체가 지정된 유형의 경우 True,그렇지 않으면 False 반환
+
+ isinstance함수는 상속관계에도 적용
+ https://devpouch.tistory.com/87
+-------------------------------------------------------
+
+"Hello"가 type 매개 변수에 설명 된 유형 중 하나인지 확인하십시오.
+
+## 반복 가능한 객체
+## 		시퀀스 객체 - list, tuple, range, str, byte
+## 		기타 객체   - dict, set
+
+## 반복 가능하지 않는 객체
+## 		기타 객체   - int, float, None
+
+### 반복 가능한 객체 알아보기, 결과값 True
+chk = isinstance("Hello", (set, dict, str, list, tuple, range))
+chk
+
+
+
+
+
+x = isinstance("Hello", (float, int, str, list, dict, tuple))
+
+>>> class myObj:
+...   name = "John"
+...
+>>> y = myObj()
+>>> x = isinstance(y, myObj)
+>>> x
+True
+>>>
+
+
+# int 인스턴스인지 검사, True 출력
+result = isinstance(1, int)
+print(result)
+
+# float 인스턴스인지 검사, True 출력
+result = isinstance(1.345, float)
+print(result)
+
+# str 인스턴스인지 검사, True 출력
+result = isinstance("It's string", str)
+print(result)
+
+# dict 인스턴스인지 검사, True 출력
+result = isinstance({'림코딩':33,'최번개':26}, dict)
+print(result)
+
+# list 인스턴스인지 검사, True 출력
+result = isinstance([1,2,3], list)
+print(result)
+
+
+class Animal:
+    pass
+
+# Class 검사 , True 출력
+animal_class = Animal()
+result = isinstance(animal_class, Animal)
+print(result)
+
+
+
+
+class Animal:
+    pass
+
+class Monkey(Animal):
+    pass
+
+# Class 검사시 자식 클래스를 체크해서 맞으면 True 값을 반환해 줍니다.
+monkey_class = Monkey()
+result = isinstance(monkey_class, Monkey)
+print(result)
+
+# 부모 클래스로 해도 True 값을 반환해줍니다.
+result = isinstance(monkey_class, Animal)
+print(result)
+
+
+
+==================================================================
+20. issubclass ()함수
+==================================================================
+
+issubclass(object, class)
+Object가 class의 하위 클래스 인 경우 True,
+그렇지 않으면 False 반환
+-------------------------------------------------------
+
+클래스 myObj가 다음의 하위 클래스 인지 확인하십시오 myAge.
+
+>>>
+>>> class myAge:
+...   age = 36
+...
+>>> class myObj(myAge):
+...   name = "John"
+...   age = myAge
+...
+>>> x = issubclass(myObj, myAge)
+>>> x
+True
+
+
+
+
+
+==================================================================
+21. raise 구문
+==================================================================
+https://devpouch.tistory.com/89?category=1024283
+
+-------------------------------------------------------
+
+
+
+
+
+==================================================================
+18.
+==================================================================
+
+
+-------------------------------------------------------
+
+
+
+
+
+
+</body>
+</html>

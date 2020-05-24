@@ -1,0 +1,42 @@
+HomePage 구조
+\
+|   .htaccess
+|   index.php
+|
+\---application
+    +---vender
+    |       autoload.php
+    +---libs
+    |       application.php
+    |       config.php
+    +---controllers
+    |       BoardController.php
+    |       Controller.php
+    |       HomeController.php
+    |
+    |
+    +---models
+    |       BoardModel.php
+    |       HomeModel.php
+    |       Model.php
+    |
+    |
+    \---views
+        \---board
+                delete.php
+                deleteNoFile.php
+                edit.php
+                index.php
+                read.php
+                readNoFile.php
+                update.php
+                updateNoFile.php
+                write.php
+
+
+
+
+
+
+
+

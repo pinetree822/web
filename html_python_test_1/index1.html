@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>HTML-Python 시작1</title>
+</head>
+<body>
+
+
+
+
+
+=========================================================================================
+01. MAC, LINUX, WINDOWS (pyenv,Python) 설치
+=========================================================================================
+
+참고 주소
+https://packaging.python.org/tutorials/installing-packages/#creating-virtual-environments
+
+https://docs.python.org/ko/3.7/library/stdtypes.html
+https://kongdols-room.tistory.com/27
+
+
+
+Python(파이썬) 설치는 Python의 언어를 읽어서 해석 해줄 수 있는 인터프리터와 기본 라이브러리를 설치하게 됩니다.
+
+그리고 이러한 언어 또한 종종 버전 업데이트가 이루어지며, 이러한 버전 업데이트때마다 새롭게 설치를 하고,
+구버전으로 개발된 프로그램에 맞추어 다시 인터프리터를 다시 설치하는 것은 무척 비효율적입니다.
+
+그래서 이러한 인터프리터 언어들은 여러 버전을 설치하고 손쉽게 시스템의 인터프리터 환경을 변경시켜주는 version manager가 있습니다.
+ruby의 rvm, Node.js의 nvm 이 대표적인 예입니다.
+
+
+Python에도 이러한 version manager가 있습니다.
+pyenv를 먼저 설치하겠습니다.
+
+❈ Windows는 pyenv 설치 지원을 하지 않습니다.
+
+
+
+
+
+
+A. pyenv 설치
+-----------------------------------------------------------------------------------------
+
+1) Mac 설치 - brew로 설치
+$ brew update
+$ brew install pyenv
+
+
+2) Linux 설치 - git으로 아래와 같이 clone
+
+$ git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+Linux환경에 따라서는 ~/.bash_profile 대신에 ~/.bashrc 사용해야하는 경우도 있으며, zsh 쉘의 경우 ~/.zshenv 또는 ~/.zshrc 로 경로를 변경해야합니다.
+
+$ echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile
+
+$ echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bash_profile
+
+$ echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.bash_profile
+
+쉘 재가동
+$ exec "$SHELL"
+pyenv 설치 후 반드시 아래 라이브러리를 설치해주세요. 그렇지 않으면 pyenv install 시 컴파일 문제가 생길 수 있습니다.
+https://github.com/pyenv/pyenv/wiki/Common-build-problems
+
+$ yum install zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl-devel xz xz-devel
+
+
+
+
+
+B. pyenv를 이용한 Python 설치
+-----------------------------------------------------------------------------------------
+
+아래의 명령어를 입력하면 pyenv로 설치할 수 있는 Python 인터프리터 리스트들이 나옵니다.
+
+$ pyenv install --list
+그 중에 anaconda3-5.0.1 을 설치하겠습니다.(여러 유용한 라이브러리가 많이 포함되어 있습니다.)
+
+$ pyenv install anaconda3-5.0.1
+❈ 저의 경우는 설치 과정에서 zlib 관련 에러가 발생하였습니다. 만약 맥 환경에서 zlib 에러가 날 경우 아래의 명령어를 실행하세요.
+xcode-select --install
+설치 완료 후 아래 명령어를 실행하면, system, anaconda3-5.0.1 만 보일 것입니다.
+
+$ pyenv versions
+먼저 현재 시스템의 Python 버전을 보겠습니다. 리눅스와 맥은 기본적으로 python 2 버전대의 Python이 기본 설치 되어 있을 것입니다. 이것이 system 입니다.
+
+$ python -V
+이제 시스템의 Python 인터프리터를 anaconda3-5.0.1으로 변경하겠습니다.
+
+$ pyenv global anaconda3-5.0.1
+다시 python -V 명령어로 Python 버전을 확인하면 Python 3.6.3 :: Anaconda, Inc.을 확인할 수 있습니다.
+이러한 방식으로 다양한 버전의 Python 인터프리터를 설치하여 변경하면서 사용할 수 있습니다.
+
+
+
+
+
+
+C. Windows에서 Python 설치
+-----------------------------------------------------------------------------------------
+
+https://www.anaconda.com/download/#windows 을 방문하여 자신의 환경에 맞는 인스톨러를 다운받아 설치합니다.
+설치 과정 옵션 중에 PATH 환경에 추가하겠냐는 질문에 체크 후 설치 하시면 커맨드 창에서 Python 을 사용할 수 있습니다.
+
+
+
+
+
+
+
+
+
+=========================================================================================
+02. 윈도우7 파이썬(Python)3.7.7 64비트 설치하기
+=========================================================================================
+A. 참고싸이트
+-----------------------------------------------------------------------------------------
+
+
+
+1) Python 싸이트
+
+시작하기(Getting started)
+https://opentechschool.github.io/python-beginners/ko/getting_started.html#what-is-python-exactly
+https://opentechschool.github.io/python-beginners/en/getting_started.html#what-is-python-exactly
+
+GettingStarted Source (gitHub repository)
+https://github.com/opentechschool/python-beginners
+
+
+
+파이썬 자습서
+https://docs.python.org/ko/3.7/tutorial/index.html#tutorial-index
+
+
+파이썬 온라인 튜토리얼(Tutorial)
+https://docs.python.org/3.7/tutorial/index.html
+https://docs.python.org/ko/3.7/tutorial/index.html
+
+
+파이썬 언어 레퍼런스
+https://docs.python.org/ko/3.7/reference/index.html#reference-index
+
+
+파이썬 표준 라이브러리
+https://docs.python.org/ko/3.7/library/index.html#library-index
+
+
+파이썬 패키지 설치 학습(Python Installing Packages Tutorial)
+https://packaging.python.org/tutorials/installing-packages/
+
+
+파이썬은 파이썬패키지색인(PyPI)로 소프트웨어의 저장소이다.(python package index)
+(The Python Package Index (PyPI) is a repository of software for the Python programming language.)
+https://pypi.org/
+
+
+
+파이썬/C API 레퍼런스 설명서
+https://docs.python.org/ko/3.7/c-api/index.html#c-api-index
+
+파이썬 인터프리터 확장 및 내장
+https://docs.python.org/ko/3.7/extending/index.html#extending-index
+
+Cython, cffi, SWIG 와 Numba 와 같은 제삼자 도구는 파이썬을 위한 C와 C++ 확장을 만드는 더 간단하고 세련된 접근법을 제공
+http://cython.org/
+https://cffi.readthedocs.io/
+http://www.swig.org/
+https://numba.pydata.org/
+
+turtle — Turtle graphics
+https://docs.python.org/3.7/library/turtle.html
+
+
+2) 열린강의
+
+inflearn 지식공유참여 - MIT 공개강좌 - 컴퓨터 과학 & 프로그래밍 입문 (python)
+https://www.inflearn.com/course/mit-%EA%B3%B5%EA%B0%9C%EA%B0%95%EC%A2%8C-python/#reviews
+https://ocw.mit.edu/index.htm
+
+coursera 온라인 강좌 - 미국 미쉬간대학교
+https://www.coursera.org/specializations/python
+
+snow 온라인 열린강의 - 숙명여대
+http://www.snow.or.kr/lecture/applied_sciences/computer_science
+
+파이썬 워크샵
+http://python.opentechschool.org/#python-beginners
+
+Stanford,MIT,Harvard 및 Berkley와 같은 대학에서 무료로 대화형코스 제공
+https://www.edx.org/course
+
+
+프로젝트 학위 수료 무료코스 수강 정보(수료증 제공)
+https://www.coursera.org/courses?orderby=upcoming&cats=cs-theory,cs-systems,cs-programming,cs-ai
+
+
+IBM 데이터 과학 전문 자격증
+https://www.coursera.org/professional-certificates/ibm-data-science
+데이터과학,(Python,SQL)학습,데이터(분석,시각화),머신러닝,모델 구축
+
+
+코딩연습
+https://www.codecademy.com/
+
+
+3) 개인블러그
+
+SuwoniCodelab 개인블러그 - Python 기본 카테고리
+(2018-03-01)
+https://suwoni-codelab.com/category/#/Python%20%EA%B8%B0%EB%B3%B8
+
+
+달인최선 개인블러그 - 파이썬 소개
+(2017-11-05)
+https://itissmart.tistory.com/65
+
+
+
+
+B. 파이썬 다운로드
+-----------------------------------------------------------------------------------------
+
+https://python.org/downloads
+https://www.anaconda.com/products/individual#windows
+
+
+
+1) 파이썬 버젼 - version별 히스토리
+
+https://www.python.org/dev/peps/pep-0537/
+
+
+
+2) 파이썬 3.7.7 버젼별 모음
+
+64비트 라이브러리실행(portable)형 : Windows x86-64 embeddable zip file	Windows	for AMD64/EM64T/x64
+https://www.python.org/ftp/python/3.7.7/python-3.7.7-embed-amd64.
+
+64비트 설치 독립실행형(전체설치) : Windows x86-64 executable installer	Windows	for AMD64/EM64T/x64
+https://www.python.org/ftp/python/3.7.7/python-3.7.7-amd64.exe
+
+64비트 설치 독립실행형(최소설치) : Windows x86-64 web-based installer	Windows	for AMD64/EM64T/x64
+https://www.python.org/ftp/python/3.7.7/python-3.7.7-amd64-webinstall.exe
+
+
+
+
+C. 설치후 확인
+-----------------------------------------------------------------------------------------
+
+1) Read Evaluate Print Loop(REPL)
+
+실행 1방법: 윈도우키 + R -> cmd -> python
+종료 1방법: Ctrl + z -> exit
+실행 2방법: 윈도우키 + R -> python
+종료 2방법: Ctrl + z
+
+
+
+
+2) Python 3.7.7 REPL 실행
+
+Python 3.7.7 (tags/v3.7.7:d7c567b08f, Mar 10 2020, 10:41:24) [MSC v.1900 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>>
+
+
+
+
+3) WindowsConsole에서 version 확인
+
+C:\Users\kim>python --version
+D:\_xampp\Python\Python377-x64>python -version
+Python 3.7.7
+
+C:\Users\kim>pip --version
+D:\_xampp\Python\Python377-x64\Scripts>pip --version
+pip 19.2.3 from d:\_xampp\python\python377-x64\lib\site-packages\pip (python 3.7)
+
+
+
+
+
+
+
+
+D. 추천 편집기
+-----------------------------------------------------------------------------------------
+
+1) http://www.activestate.com/komodo-edit
+Komodo Edit: 좀 강력한 코모도 IDE를 기반으로 하는 뽀대나는 공짜 편집기인데요. 맥용, 윈도우용, 리눅스용이 있어요.
+
+
+
+
+
+2) http://www.sublimetext.com/
+서브라임 텍스트: 편집기 중에서도 사용하기 쉬운 완벽한 편집기예요. Ctrl+B 단축키로 작업중인 파이썬 파일을 바로 실행하게 해줘요. 윈도우즈, 맥, 리눅스에서 동작해요.
+
+
+
+2.1) sublime(서브라임) IDLE 편집기 단축키 환경설정
+
+
+
+2.1.a) SublimeText (서브라임텍스트) – emmet 사용법 정리
+
+http://junil-hwang.com/blog/%EC%84%9C%EB%B8%8C%EB%9D%BC%EC%9E%84%ED%85%8D%EC%8A%A4%ED%8A%B8-emmet/
+
+
+
+2.1.b) Emmet - 서브라임 텍스트(Sublime Text) 플러그인 #4
+
+https://webdir.tistory.com/399
+
+
+
+2.1.c) Sublime Text 설치 후 초기 세팅하기(기본 플러그인 포함)
+
+https://www.google.com/search?q=sublime+Text+emmet+%EC%84%A4%EC%B9%98%EA%B0%80+%EC%95%8A%EB%90%98%EB%8A%94+%EA%B2%BD%EC%9A%B0&rlz=1C1CHBD_koKR874KR874&oq=sublime+Text+emmet+%EC%84%A4%EC%B9%98%EA%B0%80+%EC%95%8A%EB%90%98%EB%8A%94+%EA%B2%BD%EC%9A%B0&aqs=chrome..69i57.12148j0j8&sourceid=chrome&ie=UTF-8
+
+
+
+2.1.d) SublimeText3 설치후 Preview 설정
+
+https://www.hongkiat.com/blog/preview-in-localhost/
+https://github.com/titoBouzout/SideBarEnhancements#f12-key
+https://forum.sublimetext.com/t/sidebarenhancements-open-in-browser-is-misbehaving/37330
+
+
+
+2.1.e) 서브라임 편집기에서 순서대로 누름
+
+alt key 누름 > Preferences > Package Settings
+> Terminus > Settings
+
+alt key 누름 > Preferences > Package Settings
+> Terminus > Command Palette
+
+alt key 누름 > Preferences > Package Settings
+> Terminus > Command Key Bindings
+
+
+
+2.1.f) 서브프라임 싸이트바 설정및 프로젝트 폴더 환경설정
+
+<SideBarEnhancements.json>
+{
+
+	"D:/_xampp/htdocs":{
+		"url_testing":"http://localhost",
+		"url_production":"http://127.0.0.1"
+	},
+	"D:/_xampp/htdocs/php_test1":{
+		"url_testing":"http://localhost/php_test1",
+		"url_production":"http://127.0.0.1/php_test1"
+	}
+}
+
+
+<project_php1.sublime-project>
+{
+	"folders":
+	[
+		{
+			"path": "D:\\_xampp\\htdocs"
+		}
+	]
+}
+
+
+
+
+2.1.g) SublimeText3 설치후 내부에서 command, bash, zsh, github명령창 설정
+
+https://www.youtube.com/watch?v=941cDSjl3Og
+https://github.com/James231/Terminals-In-Sublime-Text/blob/master/Terminus%20Command%20Palette.json
+PortableGit-2.26.2-64-bit.7z - 설치위치에서 bash,zsh 위치 찾아 설정
+
+
+
+2.1.g) 서브프라임 commands 환경설정
+
+<Default .sublime-commands--User>
+///////////////////////////////////////////////////////////
+//           Jam-Es.com
+//////////////////////////////////////////////////////////
+
+// This defines all the commands you can use
+// press Ctrl Shift P and type them in
+
+// This defines all the commands you can use
+// press Ctrl Shift P and type them in
+
+[
+
+    // This item opens Command Prompt in a new window when the command 'Command Prompt (new Window)' is typed in
+    {
+         // The command to type in:
+         "caption": "Command Prompt (new Window)",
+
+         // Tell terminus to open something:
+         "command": "terminus_open",
+
+         // Tell terminus what to open:
+         "args"   : {
+            // Tell terminus to open Command Prompt
+            "cmd": "cmd.exe",
+            // Tell command prompt what the current working directory is
+            "cwd": "${file_path:${folder}}",
+            // Give the window a title:
+            "title": "Command Prompt"
+         }
+    },
+
+    // Opens Command Prompt in the panel at the bottom of the screen when this command is typed in
+    {
+         "caption": "Command Prompt (panel)",
+         "command": "terminus_open",
+         "args"   : {
+            "cmd": "cmd.exe",
+            "cwd": "${file_path:${folder}}",
+            "title": "Command Prompt",
+
+            // This additional line tells Terminus that we want to open it in the panel at the bottom of the screen and not a new window
+            "panel_name": "Terminus"
+         }
+    },
+
+    // Opens Git Bash in new window when command is typed in
+    {
+         "caption": "Git Bash (new Window)",
+         "command": "terminus_open",
+         "args"   : {
+            // Remember to change the following path
+            "cmd": ["D:\\_PortableGit\\bin\\bash.exe", "-i", "-l"],
+            "cwd": "${file_path:${folder}}",
+            "title": "Git Bash"
+         }
+    },
+
+    // Opens Git Bash in panel when command is typed in
+    {
+         "caption": "Git Bash (panel)",
+         "command": "terminus_open",
+         "args"   : {
+            // Remember to change the following path
+            "cmd": ["D:\\_PortableGit\\bin\\bash.exe", "-i", "-l"],
+            "cwd": "${file_path:${folder}}",
+            "title": "Git Bash",
+            "panel_name": "Terminus"
+         }
+    },
+
+    // 파이썬 터미널 Python 3.7.7 REPL 실행
+    {
+         // The command to type in:
+         "caption": "Python 3.7.7 REPL (new Window)",
+
+         // Tell terminus to open something:
+         "command": "terminus_open",
+
+         // Tell terminus what to open:
+         "args"   : {
+            // Tell terminus to open Command Prompt
+            "cmd": "D:\\_xampp\\Python\\Python377-x64\\python.exe",
+            // Tell command prompt what the current working directory is
+            "cwd": "${file_path:${folder}}",
+            // Give the window a title:
+            "title": "Python 3.7.7 REPL "
+         }
+    },
+]
+
+
+
+2.1.h) 서브프라임 keymap 환경설정
+
+<Default (Windows).sublime-keymap>
+///////////////////////////////////////////////////////////
+//           Jam-Es.com
+//////////////////////////////////////////////////////////
+
+
+[
+	{
+		"keys": ["alt+`"],
+		"command": "toggle_terminus_panel"
+	},
+	{
+		"keys": ["alt+1"],
+		"command": "terminus_open",
+		"args" : {
+         	"cmd": "cmd.exe",
+            "cwd": "${file_path:${folder}}",
+            "panel_name": "Terminus"
+        }
+	},
+	{
+		"keys": ["alt+2"],
+		"command": "terminus_open",
+         "args" : {
+         	"cmd": ["D:\\_PortableGit\\bin\\bash.exe", "-i", "-l"],
+            "cwd": "${file_path:${folder}}",
+            "panel_name": "Terminus"
+         }
+	},
+	{
+		"keys": ["alt+3"],
+		"command": "terminus_open",
+		"args" : {
+         	"cmd": "cmd.exe",
+            "cwd": "${file_path:${folder}}"
+        }
+	},
+	{
+		"keys": ["alt+4"],
+		"command": "terminus_open",
+         "args" : {
+         	"cmd": ["D:\\_PortableGit\\bin\\bash.exe", "-i", "-l"],
+            "cwd": "${file_path:${folder}}"
+         }
+	},
+	{
+		"keys": ["alt+5"],
+		"command": "terminus_open",
+         "args" : {
+         	"cmd": "D:\\_xampp\\Python\\Python377-x64\\python.exe",
+            "cwd": "${file_path:${folder}}"
+         }
+	},
+	{ "keys": ["f12"],
+		"command": "side_bar_open_in_browser" ,
+		"args":{"paths":[], "type":"testing", "browser":"chrome"}
+	},
+	{ "keys": ["alt+f12"],
+		"command": "side_bar_open_in_browser",
+		"args":{"paths":[], "type":"production", "browser":"chrome"}
+	},
+	{
+		"keys": ["ctrl+t"],
+		"command": "side_bar_new_file2"
+	},
+	{
+		"keys": ["f2"],
+		"command": "side_bar_rename"
+	},
+	{
+		"keys": ["f10"],
+		"id": "side-bar-find-files",
+		"command": "side_bar_find_files_path_containing",
+		"args": {
+			"paths": []
+		}
+	},
+]
+
+
+
+
+
+
+=========================================================================================
+03. 파이썬 REPL (Read Evaluate Print Loop)
+=========================================================================================
+A.
+-----------------------------------------------------------------------------------------
+1)
+1.1)
+1.1.a)
+2.1.i)
+
+=========================================================================================
+
+
+
+
+A) 인터프리터(=Windows python terminal = shell,console,command prompt) : Read Evaluate Print Loop(REPL)
+-----------------------------------------------------------------------------------------
+
+
+1) 윈도우 실행방법
+
+
+실행 1방법: 윈도우키 + R -> cmd -> python
+종료 1방법: Ctrl + z, exit() -> exit
+실행 2방법: 윈도우키 + R -> python
+종료 2방법: Ctrl + z
+
+
+2) Python 3.7.7 REPL 실행
+
+
+Python 3.7.7 (tags/v3.7.7:d7c567b08f, Mar 10 2020, 10:41:24) [MSC v.1900 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3) REPL 실행 테스트
+
+- 원소스
+시작하기(Getting started)
+https://opentechschool.github.io/python-beginners/ko/getting_started.html#what-is-python-exactly
+https://opentechschool.github.io/python-beginners/en/getting_started.html#what-is-python-exactly
+
+GettingStarted Source (gitHub repository)
+https://github.com/opentechschool/python-beginners
+
+
+
+
+
+>>> 5+3
+8
+
+>>> 5*7
+35
+
+>>> 3/9999999999999999999999999999
+3e-28
+
+>>> 12/4
+3.0
+
+>>> 12%4
+0
+
+>>> y=5
+>>> y*2
+10
+>>> k=5
+
+>>> _+3   <---라인 첫 언더바는(_) 직전의 연산결과값을 호출.
+13        <---(_)는 결과값 13 -> 13+3으로 처리 결과값 16.
+
+>>> 1==1
+True
+>>> _+3
+4
+>>> 1!=1
+False
+>>> _+3
+3
+
+>>> print("Hello World");
+Hello World
+>>> print('Hello World')
+Hello World
+>>> print(`Hello World`)
+  File "<stdin>", line 1
+    print(`Hello World`)
+          ^
+SyntaxError: invalid syntax
+>>>
+
+
+
+4) DOS Command Line Test
+
+D:\_xampp\htdocs>echo print('hello test') >hello.py
+D:\_xampp\htdocs>python hello.py
+hello test
+
+
+D:\_xampp\htdocs>copy con hello.py
+print('Hello World')
+Overwrite hello.py? (Yes/No/All): y
+^Z
+
+
+D:\_xampp\htdocs>python hello.py
+Hello World
+
+
+D:\_xampp\htdocs>copy con hello.py
+1==1
+Overwrite hello.py? (Yes/No/All): y
+_+3
+1!=1
+_+3
+print("Hello World");
+^Z
+        1 file(s) copied.
+
+D:\_xampp\htdocs>python hello.py
+Traceback (most recent call last):
+  File "hello.py", line 2, in <module>
+    _+3
+NameError: name '_' is not defined
+
+
+
+
+5) Turtle은 그림판 테스트
+
+
+참고싸이트
+https://docs.python.org/3.7/library/turtle.html
+
+
+
+python REPL 테스트
+
+>>> import turtle
+>>> turtle.forward(25)
+>>> turtle.left(30)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<string>", line 5, in left
+turtle.Terminator
+
+>>> turtle.forward(30)
+>>> turtle.left(25)
+>>> turtle.right(30)
+>>> turtle.back(40)
+>>> turtle.backward(50)
+>>> turtle.reset()
+
+
+>>> turtle.shape
+<function shape at 0x00000000030EB678>
+>>> turtle.shape()
+'classic'
+>>> turtle.shape("turtle")
+>>> exit()
+
+
+
+
+정사각형 그리기
+
+>>> import turtle
+>>> turtle.forward(50)
+>>> turtle.left(90)
+>>> turtle.forward(50)
+>>> turtle.left(90)
+>>> turtle.forward(50)
+>>> turtle.left(90)
+>>> turtle.forward(50)
+
+
+
+오각형 그리기
+
+>>> from turtle import *
+>>>
+>>> t = Turtle();
+>>> screen = t.getscreen()
+>>> t.forward(25)
+>>> t.left(72.5)
+>>> t.forward(25)
+>>> t.left(72.5)
+>>> t.forward(25)
+>>> t.left(72.5)
+>>> t.forward(25)
+>>> t.left(72.5)
+>>> t.forward(25)
+>>> screen.exitonclick()
+
+
+
+직사각형 그리기
+
+turtle.forward(100)
+turtle.left(90)
+turtle.forward(50)
+turtle.left(90)
+turtle.forward(100)
+turtle.left(90)
+turtle.forward(50)
+turtle.left(90)
+
+
+
+꼭지점 하나에 사각형 회전 (사각형 3개) 그리기
+
+turtle.left(20)
+
+turtle.forward(50)
+turtle.left(90)
+turtle.forward(50)
+turtle.left(90)
+turtle.forward(50)
+turtle.left(90)
+turtle.forward(50)
+turtle.left(90)
+
+turtle.left(30)
+
+turtle.forward(50)
+turtle.left(90)
+turtle.forward(50)
+turtle.left(90)
+turtle.forward(50)
+turtle.left(90)
+turtle.forward(50)
+turtle.left(90)
+
+turtle.left(40)
+
+turtle.forward(50)
+turtle.left(90)
+turtle.forward(50)
+turtle.left(90)
+turtle.forward(50)
+turtle.left(90)
+turtle.forward(50)
+turtle.left(90)
+
+
+
+
+오류 사항 대처(cmd > python 처리시 나오는증상)
+
+>>> help(list)
+Not enough memory.
+
+
+이슈 정보
+
+https://bugs.python.org/issue19914
+문제는 Windows 명령 줄 유틸리티에서 사용하는 ulib.dll 유틸리티 라이브러리를 통해 간접적으로 발생합니다.
+콘솔 변환이 활성화 된 경우에만 발생합니다.
+그렇지 않으면 ulib는 시스템 OEM 및 ANSI 코드 페이지를 사용하여 변환합니다.
+
+
+
+오류해결 방법
+
+설치된 python > pythone.exe 실행파일 실행 테스트
+윈도우키 + R -> python 으로 실행후 테스트
+
+>>> from turtle import *
+>>> t = Turtle()
+>>>
+>>> help(t.color)
+Help on method color in module turtle:
+
+color(*args) method of turtle.Turtle instance
+    Return or set the pencolor and fillcolor.
+
+    Arguments:
+    Several input formats are allowed.
+    They use 0, 1, 2, or 3 arguments as follows:
+
+    color()
+        Return the current pencolor and the current fillcolor
+        as a pair of color specification strings as are returned
+        by pencolor and fillcolor.
+    color(colorstring), color((r,g,b)), color(r,g,b)
+        inputs as in pencolor, set both, fillcolor and pencolor,
+        to the given value.
+    color(colorstring1, colorstring2),
+    color((r1,g1,b1), (r2,g2,b2))
+        equivalent to pencolor(colorstring1) and fillcolor(colorstring2)
+        and analogously, if the other input format is used.
+
+    If turtleshape is a polygon, outline and interior of that polygon
+    is drawn with the newly set colors.
+    For more info see: pencolor, fillcolor
+
+    Example (for a Turtle instance named turtle):
+    >>> turtle.color('red', 'green')
+    >>> turtle.color()
+    ('red', 'green')
+    >>> colormode(255)
+    >>> color((40, 80, 120), (160, 200, 240))
+    >>> color()
+-- More  --
+
+
+
+
+>>> import turtle
+>>>
+>>> help(turtle)
+Help on module turtle:
+
+NAME
+    turtle
+
+MODULE REFERENCE
+    https://docs.python.org/3.7/library/turtle
+
+    The following documentation is automatically generated from the Python
+    source files.  It may be incomplete, incorrect or include features that
+    are considered implementation detail and may vary between Python
+    implementations.  When in doubt, consult the module reference at the
+    location listed above.
+
+DESCRIPTION
+    Turtle graphics is a popular way for introducing programming to
+    kids. It was part of the original Logo programming language developed
+    by Wally Feurzig and Seymour Papert in 1966.
+
+    Imagine a robotic turtle starting at (0, 0) in the x-y plane. After an ``imp
+ort turtle``, give it
+    the command turtle.forward(15), and it moves (on-screen!) 15 pixels in
+    the direction it is facing, drawing a line as it moves. Give it the
+    command turtle.right(25), and it rotates in-place 25 degrees clockwise.
+-- More  --
+
+
+
+
+
+
+Turtle Star 그리기
+
+
+>>> from turtle import *
+>>> color('red','yellow')
+>>> begin_fill()
+>>> while True:
+...  forward(200)
+...  left(170)
+...  if abs(pos()) < 1:
+...   break
+...                 <--- enter키 while문 탈출
+>>> end_fill()
+>>> done()
+>>> exit()
+
+
+
+Turtle Demo - 데모스크립트
+
+전체샘플
+D:\_xampp\htdocs>python -m turtledemo
+
+개별샘플
+python -m turtledemo.bytedesign
+
+전체샘플 이름 리스트
+bytedesign
+chaos
+clock
+colormixer
+forest
+fractalcurves
+lindenmayer
+minimal_hanoi
+nim
+paint
+peace
+penrose
+planet_and_moon
+round_dance
+sorting_animate
+tree
+two_canvases
+wikipedia
+yinyang
+
+
+
+turtle에 변수 삽입
+
+>>> import turtle
+>>>
+>>> x = 5
+>>> turtle.forward(x)
+>>> timmy = turtle
+>>> timmy.forward(50)
+>>> timmy.left(90)
+>>> timmy.forward(50)
+
+
+
+turtle에 angle 변수 사용법
+
+angle = 20
+
+turtle.left(angle)
+
+turtle.forward(50)
+turtle.left(90)
+turtle.forward(50)
+turtle.left(90)
+turtle.forward(50)
+turtle.left(90)
+turtle.forward(50)
+turtle.left(90)
+
+turtle.left(angle)
+
+
+
+
+
+6) 순환(LOOP)
+
+for name in "John", "Sam", "Jill":
+    print("Hello " + name)
+Hello John
+Hello Sam
+Hello Jill
+
+
+
+for i in range(10):
+    print(i)
+
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+
+
+>>> total = 0
+>>> for i in 5,7,11,13:
+...  print(i)
+...  total = total + i
+...
+5
+7
+11
+13
+>>> print(total)
+36
+
+
+
+>>> for _ in range(10):
+...     print("Hello!")
+...
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+Hello!
+
+
+
+>>> list_of_beverages = "John", "Sam","Jill"
+>>>
+>>> for drink in list_of_beverages:
+...     print("Would you like a " + drink + "?")
+...
+Would you like a John?
+Would you like a Sam?
+Would you like a Jill?
+
+
+
+turtle.penup(), turtle.pendown() 함수 이용
+
+>>> import turtle
+>>>
+>>> for i in range(10):
+...     turtle.forward(15)
+...     turtle.penup()
+...     turtle.forward(5)
+...     turtle.pendown()
+
+# turtle.penup() 선을 그리지 않고 그냥 움직인다.
+# turtle.pendown() 선을 다시 그리라고 한다.
+
+
+
+주석 처리시
+
+>>> for i in range(10): 	# loop for range
+...     print(i)
+...     # write more code here
+...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+
+
+
+
+추상화 지원 함수
+
+
+
+turtle.reset() 의 기능
+
+그림판을 지운다.
+너비와 색상을 기본값으로 재설정
+거북이(화살표)를 다시 원래 위치로 이동
+
+
+def 키워드를 사용한 함수 정의
+
+>>> def line_without_movings():	# define
+...     turtle.forward(50)	# 앞으로 50 이동
+...     turtle.backward(50)	# 뒤로 50 이동
+...
+>>>
+>>> line_without_movings()
+>>> turtle.right(90) # 오른쪽으로 90 회전
+>>> turtle.reset()
+>>>
+>>>
+>>>
+>>> line_without_movings() # def 함수 호출
+>>> turtle.right(90)
+>>> line_without_movings()
+>>> turtle.right(90)
+>>> line_without_movings()
+>>> turtle.right(90)
+>>> line_without_movings()
+
+
+
+
+
+
+
+
+
+>>> turtle.reset()
+>>>
+>>> import turtle
+>>>
+>>> def line_without_movings():
+...     turtle.forward(50)
+...     turtle.forward(50)
+...
+>>> def star_arm():
+...     line_without_movings()
+...     turtle.right(360/5)
+...
+>>> for _ in range(5):
+...     star_arm()
+...
+>>>
+
+
+
+파이썬의 들여쓰기
+
+탭(공백4칸)으로 구분으로 배치 하는게 버그를 좀더 작게 한다.
+
+
+
+
+
+
+사각형을 그리는 함수
+
+>>> def tilted_square():
+...     turtle.left(20)         # 여기에서 각도를 변경한다.
+...     for _ in range(4):
+...             turtle.forward(50)
+...             turtle.left(90)
+...
+>>> tilted_square()
+>>> tilted_square()
+>>> tilted_square()
+>>>
+>>>
+>>> # 사각형을 그리는별도의 기능을 별도로 사용할수 있다.
+>>>
+>>> def square():
+...     for _ in range(4):
+...             turtle.forward(50)
+...             turtle.left(90)
+...
+>>> def tilted_square():
+...     turtle.left(20)
+...     square()
+...
+>>> tilted_square()
+>>> tilted_square()
+>>> tilted_square()
+
+
+
+
+육각형을 7개(honeycomb) 그리는 함수
+
+>>> turtle.reset()
+>>>
+>>> def hexagon():
+...     for _ in range(6):
+...             turtle.forward(100)
+...             turtle.left(60)
+...
+>>> for _ in range(6):
+...     hexagon()
+...     turtle.forward(100)
+...     turtle.right(60)
+...
+>>>
+
+
+
+매개변수를 갖는 함수
+
+>>> def line_without_moving():
+...     turtle.forward(50)
+...     turtle.backward(50)
+...
+
+
+>>> def line_without_movings(length):
+...     turtle.forward(length)
+...     turtle.forward(length)
+...
+>>> line_without_movings(50)
+>>> turtle.reset()
+
+
+>>> def tilted_line_without_movings(length, angle):
+...     turtle.left(angle)
+...     turtle.forward(length)
+...     turtle.backward(length)
+...
+>>> tilted_line_without_movings(40,30)
+>>> turtle.reset()
+>>>
+
+
+
+
+다양한 크기의 (삼/사/육)각형을 그리는 매개변수를 가진 함수
+
+참고 : 어떤 도형이든 외각의 합은 360도
+
+>>> def triangle(size):
+...     for _ in range(3):
+...             turtle.forward(size)
+...             turtle.left(120)
+...
+>>> def square(size):
+...     for _ in range(4):
+...             turtle.forward(size)
+...             turtle.left(90)
+...
+>>> def hexagon(size):
+...     for _ in range(6):
+...             turtle.forward(size)
+...             turtle.left(60)
+...
+>>> triangle(100)
+>>> square(100)
+>>> hexagon(100)
+>>> turtle.reset()
+
+
+기타 - 매개변수로 함수로 전달
+
+turtle.left(60) | turtle.left
+
+
+
+
+
+조건문 if에 대하여
+
+
+if (참인지 판단할 조건):
+‘True’일 경우에만 아래 구문을 실행
+
+else:
+그렇지 않을 경우 ‘False’일 경우에만 아래 구문을 실행합니다.
+
+
+비교연산자 ( == 같음, > 보다 큼, < 보다 작음)
+
+
+>>> condition = True
+>>>
+>>> if condition:
+...     print("condition met")
+...
+condition met
+>>> if not condition:
+...     print("condition not met")
+...
+>>>
+
+
+>>> turtle.reset()
+>>> direction = -30
+>>>
+>>> if direction > 0 :
+...     turtle.forward(direction)
+... else:
+...     turtle.left(180)
+...     turtle.forward(-direction)
+...
+>>>
+>>> turtle.reset()
+
+
+
+
+
+방향 지시하기(Giving Direction)
+
+주의 - 파이썬2의 input()은 raw_input()을 호출한다.
+
+>>> def move():
+...     direction = input("Go left or right?")
+...     if direction == "left":
+...             turtle.left(60)
+...             turtle.forward(50)
+...     if direction == "right":
+...             turtle.right(60)
+...             turtle.forward(50)
+...
+>>> move()
+Go left or right?left
+>>> move()
+Go left or right?right
+>>> turtle.reset()
+>>>
+>>>
+>>> move()
+Go left or right?right
+>>> turtle.reset()
+>>>
+
+
+
+
+데이타 은폐(data munging) 내부 메서드
+
+.strip() - 문자열 공백 제거
+.lower() - 전체 문자열 소문자로 변경
+
+>>> myvariable = "              I AM Capitalised"
+>>> print(myvariable)
+              I AM Capitalised
+>>>
+>>> mystripped = myvariable.strip()
+>>> print(mystripped)
+I AM Capitalised
+>>>
+>>> mylower = myvariable.lower()
+>>> print(mylower)
+              i am capitalised
+>>>
+>>>
+>>> my_stripped_lower = myvariable.strip().lower()
+>>> print(my_stripped_lower)
+i am capitalised
+>>>
+>>> print(myvariable.strip().lower())
+i am capitalised
+
+
+
+
+
+
+조건순환 반목문 - while문 테스트
+
+>>> word = ''
+>>> sentence = ''
+>>>
+>>> print('Please enter some words')
+Please enter some words
+>>> print('Include a period (.) when you are finished.')
+Include a period (.) when you are finished.
+>>>
+>>> while '.' not in word:
+...     word = input('next word: ')
+...     sentence = word + ' ' + sentence
+...
+next word: 다음문자
+next word: 그다음문자
+next word: 그그다음문자
+next word: .
+>>> print()
+
+>>> print('Aha! You said:')
+Aha! You said:
+>>> print(sentence)
+. 그그다음문자 그다음문자 다음문자
+>>>
+
+
+
+
+거북이 감옥(Turtle Prison) - 감옥 로직
+좌우로 반복해서 선 그리는 화살표
+
+turtle의 forward() 메서드를 새로 짠다.
+forward()는 거북이가 원점에서 100이상 가면 돌아온다.
+
+while문과 몇개의 거북이 함수가 필요하다.
+turtle.distance(0,0) - 원점으로부터 거북이까지의 거리값
+turtle.towards(0,0) - 거북이가 놓인 방향값
+turtle.shtheading(angle) - 원점으로부터의 각도값 설정
+
+>>> def forward(distance):
+...     while distance > 0: # distance는 0보다 크다
+...             if turtle.distance(0,0) > 100: # 원점기준 거리측정
+...                     angle = turtle.towards(0,0) # 화살표 방향각도
+...                     turtle.setheading(angle) # 방향조정
+...             turtle.forward(1) # -100 <원점> +100 이동
+...             distance = distance - 1 # 주어진distance 값 -1
+...
+>>> turtle.reset()
+>>> forward(100)
+>>>
+>>> turtle.reset()
+>>> forward(300)
+>>>
+>>> turtle.reset()
+>>> forward(900)
+>>>
+
+
+
+
+
+원 그리기
+
+무한 순환 반복구문시 break문 사용
+원을 그릴때 while문으로 조건문이 항상 **True** 값
+원점에서 일정 거리에 도달하면 순환 반목구문 멈춘다.
+원점으로부터 x와 y좌표로 정의한 점까지의 거리를 가져온다.
+
+turtle.distance(x,y) 메서드를 사용
+화살표의 x,y축 각각의 위치 반환(turtle.xcor(),turtle.ycor()) 사용
+
+> 원을 그리려면 화살표가 상수값에 따라 돌아야 하고 값증가에 따라 앞으로 이동
+
+
+>>>
+>>> def draw_spiral(radius):
+...     original_xcor = turtle.xcor()
+...     original_ycor = turtle.ycor()
+...     speed = 1
+...     while True:
+...             turtle.forward(speed)
+...             turtle.left(10)
+...             speed += 0.1
+...             if turtle.distance(original_xcor, original_ycor) > radius:
+...                     break
+...
+>>>
+>>> turtle.reset()
+>>> draw_spiral(100)
+>>>
+>>>
+>>> draw_spiral(50)
+>>> draw_spiral(25)
+>>> draw_spiral(5)
+
+
+
+
+
+
+조건문의 부정 - 논리연산자(not, and or )의 사용
+
+
+
+https://opentechschool.github.io/python-beginners/ko/logical_operators.html
+
+
+논리연산자 not
+
+>>> x=False
+>>> if not x:
+...     print("condition met")
+... else:
+...     print("condition not met")
+...
+condition met
+
+
+
+Turtle 함수
+
+turtle.isdown() - 움직이지는 그린지 않그린지 확인한다.
+turtle.penup() - 움직이는 동안 그린다.
+turtle.pendown() - 움직이는 동안 그리지 않는다.
+
+단순히 펜을 들었을때 전진만 하는 함수 작성
+>>> import turtle
+>>> turtle.reset()
+>>>
+>>> def stealthed_forward(distance):
+...     if not turtle.isdown():
+...             turtle.forward(distance)
+...
+>>> stealthed_forward(100)
+>>>
+
+
+
+논리연산자 and, or
+
+>>> if 1<2 and 4>2:
+...     print("condition met")
+...
+condition met
+>>>
+>>> if 1>2 and 4<10:
+...     print("condition not met")
+...
+>>>
+>>> if 4<10 or 1<2:
+...     print("condition met")
+...
+condition met
+>>>
+
+
+
+turtle 연습
+
+원형감옥에 화살표를 놓는다.
+상자를 만든다.
+화살표가 X or Y 방향으로 100이상을 가면,
+화살표를 가운데 주변으로 다시 위치 시킨다.
+
+
+>>> def forward(distance):
+...     while distance > 0:
+...             if (turtle.xcor() > 100
+...             or turtle.xcor() < -100
+...             or turtle.ycor() > 100
+...             or turtle.ycor() < -100):
+...                     turtle.setheading(turtle.towards(0,0))
+...             turtle.forward(1)
+...             distance = distance - 1
+...
+>>> forward(300)
+>>>
+
+
+
+
+</body>
+</html>

@@ -379,7 +379,7 @@ array(3) {
 
 
 ===================================================
-클래스
+클래스 - https://www.php.net/manual/en/language.oop5.autoload.php
 ===================================================
 php >
 class Post {
@@ -657,6 +657,39 @@ array(2) {
 ===================================================
 인터페이스
 ===================================================
+// ArrayStorage.php
+<?php
+class ArrayStorage
+{
+  protected $collection = [];
+
+  public function put($item)
+  {
+    $this->collection[] = $item;
+  }
+  public function collection()
+  {
+    return $this->collection;
+  }
+}
+?>
+
+// Writings2.php
+<?php
+require 'ArrayStorage.php';
+
+abstract class Writings2
+{
+  protected $storage;
+
+  public function __construct($title, ArrayStorage $storage)
+  {
+    $this->setTitle($title);
+    $this->storage = $storage;
+  }
+}
+?>
+
 php > require 'Writings2.php';
 php >
 class Post2 extends Writings2 {
@@ -696,6 +729,706 @@ array(2) {
     string(27) "Duis dolor in reprehenderit"
   }
 }
+
+
+
+
+
+======================================================================================================
+======================================================================================================
+- 표준 PHP 라이브러리 (SPL) : 5.3.0+
+https://www.php.net/manual/en/book.spl.php
+======================================================================================================
+
+class_implements — 주어진 클래스 나 인터페이스로 구현 된 인터페이스를 반환
+class_implements ( mixed $class [, bool $autoload=TRUE ]) : 배열
+https://www.php.net/manual/en/function.class-implements.php
+
+class_parents — 주어진 클래스의 부모 클래스를 반환
+class_parents ( mixed $class [, bool $autoload=TRUE ]) : 배열
+https://www.php.net/manual/en/function.class-parents.php
+
+class_uses — 주어진 클래스가 사용하는 특성을 반환
+class_uses ( mixed $class [, bool $autoload=TRUE ]) : 배열
+https://www.php.net/manual/en/function.class-uses.php
+
+iterator_apply — 반복자의 모든 요소에 대한 함수를 호출
+iterator_apply ( Traversable $iterator , callable $function [, array $args=NULL ]) : int
+https://www.php.net/manual/en/function.iterator-apply.php
+
+iterator_count — 반복자 의 요소 수
+iterator_count ( Traversable $iterator ) : int
+https://www.php.net/manual/en/function.iterator-count.php
+
+iterator_to_array — 반복자를 배열로 복사
+iterator_to_array ( Traversable $iterator [, bool $use_keys=TRUE ]) : 배열
+https://www.php.net/manual/en/function.iterator-to-array.php
+
+spl_autoload_call — 등록 된 모든 __autoload () 함수를 사용하여 요청 된 클래스를로드합니다
+spl_autoload_call ( string $class_name ) : void
+https://www.php.net/manual/en/function.spl-autoload-call.php
+
+spl_autoload_extensions — spl_autoload의 기본 파일 확장자를 등록하고 반환
+spl_autoload_extensions ([ string $file_extensions ]) : 문자열
+https://www.php.net/manual/en/function.spl-autoload-extensions.php
+
+spl_autoload_functions — 등록 된 모든 __autoload () 함수를 반환합니다.
+spl_autoload_functions ( void ) : 배열
+https://www.php.net/manual/en/function.spl-autoload-functions.php
+
+spl_autoload_register — 주어진 함수를 __autoload () 구현으로 등록
+spl_autoload_register ([ 호출 가능 $autoload_function [, bool $throw=TRUE [, bool $prepend=FALSE ]]]) : bool
+https://www.php.net/manual/en/function.spl-autoload-register.php
+
+spl_autoload_unregister — 주어진 함수를 __autoload () 구현으로 등록 해제
+spl_autoload_unregister ( 혼합 $autoload_function ) : bool
+https://www.php.net/manual/en/function.spl-autoload-unregister.php
+
+spl_autoload — __autoload ()의 기본 구현
+spl_autoload ( 문자열 $class_name [, 문자열 $file_extensions= spl_autoload_extensions () ]) : void
+https://www.php.net/manual/en/function.spl-autoload.php
+
+spl_classes — 사용 가능한 SPL 클래스를 반환합니다.
+spl_classes ( void ) : 배열
+https://www.php.net/manual/en/function.spl-classes.php
+
+spl_object_hash — 주어진 객체에 대한 해시 ID를 반환
+spl_object_hash ( 객체 $obj ) : 문자열
+https://www.php.net/manual/en/function.spl-object-hash.php
+
+spl_object_id — 주어진 객체에 대한 정수 객체 핸들을 반환
+spl_object_id ( object $obj ) : int
+https://www.php.net/manual/en/function.spl-object-id.php
+
+
+
+===================================================
+AutoLoading - https://www.php.net/manual/en/migration74.php
+- spl_autoload_register() - 표준 PHP 라이브러리 (SPL)
+- php^4.4.0 (<=4.4.*,<=4.4.0,>4.5.0) , ~4.4 (>=4.*,>=4.4,< 5.0)
+- require(), require_once(), include(), include_once()
+===================================================
+php >
+function autoloader($class){
+  $path=$DOCUMNET_ROOT.'/classes/';
+  require $path.$class.'.php';
+}
+
+===================================================
+AutoLoading - https://www.php.net/manual/en/migration74.php
+php >=7.2 __autoload() 에러 - Deprecate됨
+-- php<5.3 (<=5.2.*,<=5.2.0,<5.3.0) __autoload()실행시 catch{} continue 에러
+-- php~7.2,<=7.4.*(*7.2,>=7.2,<=7.4.*) __autoload() 사용 불가능
+-- php~5.3,<=7.4.*(*5.3,>=5.3,<=7.4.*) 대안으로 spl_autoload_register()
+-- cli 모드에서는 자동로드가 사용 불가능
+-- call_user_func()에서 클래스이름이 "../" 위험문자 포함가능
+--
+===================================================
+
+php >
+function __autoload($class){
+  $path=$DOCUMENT_ROOT.'/classes';
+  require_once $path.$class.'.php';
+}
+PHP Deprecated:  __autoload() is deprecated, use spl_autoload_register() instead in php shell code on line 1
+Deprecated: __autoload() is deprecated, use spl_autoload_register() instead in php shell code on line 1
+
+php > $myCls = new myClass();
+PHP Notice:  Undefined variable: DOCUMENT_ROOT in php shell code on line 2
+Notice: Undefined variable: DOCUMENT_ROOT in php shell code on line 2
+PHP Warning:  require_once(/classesmyClass.php): failed to open stream: No such file or directory in php shell code on line 3
+Warning: require_once(/classesmyClass.php): failed to open stream: No such file or directory in php shell code on line 3
+PHP Fatal error:  require_once(): Failed opening required '/classesmyClass.php' (include_path='\_xampp\php\PEAR') in php shell code on line 3
+Fatal error: require_once(): Failed opening required '/classesmyClass.php' (include_path='\_xampp\php\PEAR') in php shell code on line 3
+
+
+
+
+---------------------------------------------------------------
+<?php
+// AutoloadHello.php
+class AutoloadHello
+{
+  public function say()
+  {
+    echo "AutoloadHello - PHP!";
+  }
+}
+?>
+
+
+<?php
+// AutoloadHelloTask01.php
+class AutoloadHelloTask01
+{
+  public function todoTask()
+  {
+    echo "AutoloadHelloTask01  todo Task!";
+  }
+}
+?>
+
+
+<?php
+// vender/AutoloadHelloInclude.php
+/////////////////////////////////////////////////////////////
+// type4 - autoload의 일부를 vender/AutoloadHelloInclude.php 파일로 분리
+// ../AutoloadHelloIndex.php에 insert
+spl_autoload_register(function ($class){
+  echo 'class:'.$class;
+  require_once $class.".php";
+  echo "<br>";
+});
+?>
+
+
+<?php
+// AutoloadHelloIndex.php
+/////////////////////////////////////////////////////////////
+// type1
+// require_once 'AutoloadHello.php';
+// require_once 'AutoloadHelloTask01.php';
+
+
+// $sayAutoloadHello = new AutoloadHello();
+// $sayAutoloadHello->say();
+// echo "<br>";
+// // AutoloadHello - PHP!
+
+// $autoloadHelloTask01 = new AutoloadHelloTask01;
+// $autoloadHelloTask01->todoTask();
+// // todo Task!
+
+/////////////////////////////////////////////////////////////
+// type2
+// spl_autoload_register();
+
+
+// $sayAutoloadHello = new AutoloadHello();
+// $sayAutoloadHello->say();
+// echo "<br><br>";
+// // AutoloadHello - PHP!
+
+// $autoloadHelloTask01 = new AutoloadHelloTask01;
+// $autoloadHelloTask01->todoTask();
+// // todo Task!
+
+/////////////////////////////////////////////////////////////
+// type3
+// spl_autoload_register('my_autoloader');
+// function my_autoloader($class){
+//  echo 'class:'.$class;
+//  require_once $class.".php";
+//  echo "<br>";
+// }
+
+
+// $sayAutoloadHello = new AutoloadHello;
+// $sayAutoloadHello->say();
+// echo "<br><br>";
+// // class:AutoloadHello
+// // AutoloadHello - PHP!
+
+// $autoloadHelloTask01 = new AutoloadHelloTask01;
+// $autoloadHelloTask01->todoTask();
+// // class:AutoloadHelloTask01
+// // todo Task!
+
+/////////////////////////////////////////////////////////////
+// type4 - autoload에 클로저(closure:익명함수) 사용
+// spl_autoload_register(function ($class){
+//  echo 'class:'.$class;
+//  require_once $class.".php";
+//  echo "<br>";
+// });
+
+
+// $sayAutoloadHello = new AutoloadHello;
+// $sayAutoloadHello->say();
+// echo "<br><br>";
+// // class:AutoloadHello
+// // AutoloadHello - PHP!
+
+// $helloTask01 = new AutoloadHelloTask01;
+// $helloTask01->todoTask();
+// // class:AutoloadHelloTask01
+// // class:AutoloadHelloTask01 todo Task!
+
+
+/////////////////////////////////////////////////////////////
+// type5 - autoload의 일부를 vender/AutoloadHelloInclude.php 파일로 분리
+// AutoloadHelloInclude.php
+require_once 'vender/AutoloadHelloInclude.php';
+
+
+$sayAutoloadHello = new AutoloadHello;
+$sayAutoloadHello->say();
+echo "<br><br>";
+// class:AutoloadHello
+// AutoloadHello - PHP!
+
+$helloTask01 = new AutoloadHelloTask01;
+$helloTask01->todoTask();
+// class:AutoloadHelloTask01
+// class:AutoloadHelloTask01 todo Task!
+
+
+
+?>
+
+
+---------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+===================================================
+spl_autoload_register - php ~7.4
+===================================================
+// autoload_1.php
+<?php
+  spl_autoload_register(function ($class_name){
+    include $class_name.'.php';
+  });
+
+  $obj1 = new MyClass1();
+  $obj2 = new MyClass2();
+
+//  Warning: include(MyClass1.php): failed to open stream: No such file or directory in D:\_xampp\htdocs\web\php_cli_test_1\autoload_1.php on line 3
+
+// Warning: include(): Failed opening 'MyClass1.php' for inclusion (include_path='\_xampp\php\PEAR') in D:\_xampp\htdocs\web\php_cli_test_1\autoload_1.php on line 3
+
+// Fatal error: Uncaught Error: Class 'MyClass1' not found in D:\_xampp\htdocs\web\php_cli_test_1\autoload_1.php:6 Stack trace: #0 {main} thrown in D:\_xampp\htdocs\web\php_cli_test_1\autoload_1.php on line 6
+?>
+
+
+// autoload_2.php
+<?php
+  spl_autoload_register(function ($name){
+    var_dump($name);
+  });
+
+
+  class Foo implements ITest {}
+
+
+
+
+//  string(5) "ITest"
+// Fatal error: Uncaught Error: Interface 'ITest' not found in D:\_xampp\htdocs\web\php_cli_test_1\autoload_2.php:7 Stack trace: #0 {main} thrown in D:\_xampp\htdocs\web\php_cli_test_1\autoload_2.php on line 7
+?>
+
+
+// autoload_3.php
+<?php
+  spl_autoload_register(function($name){
+    echo "Want to load $name.\n";
+    throw new Exception("Unable to load $name");
+  });
+
+  try{
+    $obj = new NonLoadableClass();
+  } catch(Exception $e){
+    echo $e->getMessage(), "\n";
+  }
+
+// Want to load NonLoadableClass.
+// Unable to load NonLoadableClass
+
+?>
+
+
+// autoload_4.php
+<?php
+  spl_autoload_register(function ($name){
+    echo "Want to load $name";
+    throw new MissingException("Unable to load $name");
+  });
+
+  try{
+    $obj = new NonLoadableClass();
+  }catch(Exception $e){
+    echo $e->getMessage(),"\n";
+  }
+
+// Want to load NonLoadableClass
+// Want to load MissingException
+// Fatal error: Uncaught Error: Class 'MissingException' not found in D:\_xampp\htdocs\web\php_cli_test_1\autoload_4.php:4 Stack trace:
+// #0 [internal function]: {closure}('MissingExceptio...')
+// #1 D:\_xampp\htdocs\web\php_cli_test_1\autoload_4.php(4): spl_autoload_call('MissingExceptio...')
+// #2 [internal function]: {closure}('NonLoadableClas...')
+// #3 D:\_xampp\htdocs\web\php_cli_test_1\autoload_4.php(8): spl_autoload_call('NonLoadableClas...')
+// #4 {main} thrown in D:\_xampp\htdocs\web\php_cli_test_1\autoload_4.php on line 4
+?>
+
+
+
+===================================================
+spl_autoload_register - Registering multiple autoloader functions
+===================================================
+php >
+function loadModel($class){
+  $path=$DOCUMENT_ROOT.'/models/';
+  require_once $path.$class.'.php';
+}
+
+php >
+function loadView($class){
+  $path=$DOCUMENT_ROOT.'/views/';
+  require_once $path.$class.'.php';
+}
+
+php > spl_autoload_register('loadModel');
+php > spl_autoload_register('loadView');
+
+
+
+===================================================
+Autoloading Classes Example - 자동로딩 클래스 예제
+
+include 또는 require 키워드를 대체한
+spl_autoload_register()와 namespace 사용하여
+PHP 클래스를 자동로드 할 수 있습니다.
+===================================================
+php > classes/home.php
+namespace classes;
+class home {
+  public function get(){
+    return 'classes/home.php';
+  }
+}
+
+php > classes/all.php
+namespace classes;
+class all {
+  public function get(){
+    return 'classes/all.php';
+  }
+}
+-----------------------------------
+php > models/home.php
+namespace models;
+class home {
+  public function get(){
+    return 'models/home.php';
+  }
+}
+
+php > models/all.php
+namespace models;
+class all {
+  public function get(){
+    return 'models/all.php';
+  }
+}
+-----------------------------------
+php > views/home.php
+namespace views;
+class home {
+  public function get(){
+    return 'views/home.php';
+  }
+}
+
+php > views/all.php
+namespace views;
+class all {
+  public function get(){
+    return 'views/all.php';
+  }
+}
+-----------------------------------
+classloader -> loader.php
+-----------------------------------
+<?php
+spl_autoload_register();
+$home = new classes\home();
+echo $home->get() . "<br>";
+
+$home = new models\home();
+echo $home->get(). "<br>";
+
+$home = new views\home();
+echo $home->get(). "<br><br>";
+
+$all = new classes\all();
+echo $all->get(). "<br>";
+
+$all = new models\all();
+echo $all->get()."<br>";
+
+$all = new views\all();
+echo $all->get();
+?>
+
+
+===================================================
+namespace
+- 라이브러리 또는 타 공유코드 간의 이름 충돌 회피
+- function, classes, constants 사용 가능
+- constants는 const 키워드가 아닌 define 키워드로 선언.
+- 파일에 둘이상의 네임스페이는 권장되지 않는다.
+- 네임 스페이스에서 작업하는 경우 인터프리터는 이름이 현재 네임 스페이스와 관련이 있다고 가정한다.
+- use 키워드를 사용하여 네임 스페이스, 클래스, 함수 또는 상수를 가져 오거나 별명을 지정할 수 있습니다.
+===================================================
+<?php
+// namespaceA.php
+// local namespace
+namespace nameA;
+$a = 0;
+$a1 = 0;
+
+function funcA($a){
+  echo "nameA:funcA<br>";
+  return ++$a;
+}
+
+function funcA1(&$a1){
+  echo "nameA:funcA1<br>";
+  return ++$a1;
+}
+
+
+
+$varA = funcA($a);
+$varA1 = funcA1($a1);
+echo "<br>";
+
+echo "call namespace:nameA, function:funcA \$a = ${a}, \$varA = ${varA}, <br>";
+echo "call namespace:nameA, function:funcA1 \$a1 = ${a1}, \$varA1 = ${varA1}<br>";
+echo "==========================================================================<br><br>";
+// require("namespaceA.php");
+// nameA:funcA
+// nameA:funcA1
+
+// call namespace:nameA, function:funcA $a = 0, $varA = 1,
+// call namespace:nameA, function:funcA1 $a1 = 1, $varA1 = 1
+?>
+
+
+<?php
+// namespaceB.php
+// global namespace
+// include("namespaceA.php");
+//
+echo "require(\"namespaceA.php\");<br>";
+require("namespaceA.php");
+
+echo "require(\"namespaceC.php\");<br>";
+require("namespaceC.php");
+
+
+
+
+function funcA($a){
+  echo "nameB:funcA<br>";
+  return ++$a;
+}
+
+function funcA1(&$a1){
+  echo "nameB:funcA1<br>";
+  return ++$a1;
+}
+echo "Inner(\"namespaceB.php\");<br><br>";
+// Inner("namespaceB.php");
+
+
+
+
+$varB1 = nameA\funcA($a);
+$varB2 = nameA\funcA1($a1);
+echo "<br>";
+echo "call namespace:nameA, function:funcA \$a = ${a}, \$varB1 = ${varB1}<br>";
+echo "call namespace:nameA, function:funcA1 \$a1 = ${a1}, \$varB2 = ${varB2}<br><br>";
+// nameA:funcA
+// nameA:funcA1
+
+// call namespace:nameA, function:funcA $a = 100, $varB1 = 101
+// call namespace:nameA, function:funcA1 $a1 = 102, $varB2 = 102
+
+
+
+$varB3 = nameA\nameSubc\funcA($a);
+$varB4 = nameA\nameSubc\funcA1($a1);
+echo "<br>";
+echo "call namespace:nameA\\nameSubc, function:funcA \$a = ${a}, \$varB3 = ${varB3}<br>";
+echo "call namespace:nameA\\nameSubc, function:funcA1 \$a1 = ${a1}, \$varB4 = ${varB4}<br><br>";
+// nameC:funcA
+// nameC:funcA1
+
+// call namespace:nameA\nameSubc, function:funcA $a = 100, $varB3 = 201
+// call namespace:nameA\nameSubc, function:funcA1 $a1 = 103, $varB4 = 203
+
+
+
+$varB5 = funcA($a);
+$varB6 = funcA1($a1);
+echo "<br>";
+echo "call namespace:globals, function:funcA \$a = ${a}, \$varB5 = ${varB5}<br>";
+echo "call namespace:globals, function:funcA1 \$a1 = ${a1}, \$varB6 = ${varB6}<br>";
+echo "==========================================================================<br><br>";
+// nameB:funcA
+// nameB:funcA1
+
+// call namespace:globals, function:funcA $a = 100, $varB5 = 101
+// call namespace:globals, function:funcA1 $a1 = 104, $varB6 = 104
+
+?>
+
+
+
+<?php
+// namespaceC.php
+// local namespace
+namespace nameA\nameSubc;
+$a = 100;//
+$a1 = 100;
+
+function funcA($a){
+  echo "nameC:funcA<br>";
+  return (++$a + 100);
+}
+
+function funcA1(&$a1){
+  echo "nameC:funcA1<br>";
+  return (++$a1 + 100);
+}
+
+
+$varC1 = funcA($a);
+$varC2 = funcA1($a1);
+echo "<br>";
+
+echo "call  \$a = ${a}, \$varC1 = ${varC1}, <br>";
+echo "call  \$a1 = ${a1}, \$varC2 = ${varC2}<br>";
+echo "==========================================================================<br><br>";
+
+// require("namespaceC.php");
+// nameC:funcA
+// nameC:funcA1
+
+// call $a = 100, $varC1 = 201,
+// call $a1 = 101, $varC2 = 201
+?>
+
+
+
+
+<?php
+// namespaceD.php
+// local namespace
+// Combine "namespaceA.php" and "namespaceD.php" into "nameA" of namespace.
+namespace nameA;
+
+echo "require(\"namespaceC.php\");<br>";
+require("namespaceC.php");
+// require("namespaceC.php");
+// nameC:funcA
+// nameC:funcA1
+
+// call $a = 100, $varC1 = 201,
+// call $a1 = 101, $varC2 = 201
+// ==========================================================================
+
+
+
+// $varD1 = funcA($a);
+// $varD2 = funcA1($a1);
+// Fatal error: Uncaught Error: Call to undefined function nameA\funcA() in D:\_xampp\htdocs\web\php_cli_test_1\namespaceD.php:18 Stack trace: #0 {main} thrown in D:\_xampp\htdocs\web\php_cli_test_1\namespaceD.php on line 18
+
+
+
+$varD1 = nameSubc\funcA($a);
+$varD2 = nameSubc\funcA1($a1);
+echo "<br>";
+echo "call namespace:nameSubc, function:funcA \$a = ${a}, \$varD1 = ${varD1}<br>";
+echo "call namespace:nnameSubc, function:funcA1 \$a1 = ${a1}, \$varD2 = ${varD2}<br><br>";
+// nameC:funcA
+// nameC:funcA1
+
+// call namespace:nameSubc, function:funcA $a = 100, $varD1 = 201
+// call namespace:nnameSubc, function:funcA1 $a1 = 102, $varD2 = 202
+
+
+
+
+
+// use namespace as alias;
+// use brainbell\template\db\views as dbviews;
+use nameA\nameSubc as subC; // alias를 사용시 전체 네임스페이스명을 지정한다.
+
+// $var = brainbell\template\db\views\aFunction();
+// $var = dbviews\aFunction();
+$varD3 = subC\funcA($a);
+$varD4 = subC\funcA1($a1);
+echo "<br>";
+echo "call namespace:nameSubc, function:funcA \$a = ${a}, \$varD3 = ${varD3}<br>";
+echo "call namespace:nnameSubc, function:funcA1 \$a1 = ${a1}, \$varD4 = ${varD4}<br><br>";
+// nameC:funcA
+// nameC:funcA1
+
+// call namespace:nameSubc, function:funcA $a = 100, $varD3 = 201
+// call namespace:nnameSubc, function:funcA1 $a1 = 103, $varD4 = 203
+
+
+
+
+
+
+echo "require(\"namespaceA.php\");<br>";
+require("namespaceA.php");
+// require("namespaceA.php");
+// nameA:funcA
+// nameA:funcA1
+
+// call namespace:nameA, function:funcA $a = 0, $varA = 1,
+// call namespace:nameA, function:funcA1 $a1 = 1, $varA1 = 1
+// ==========================================================================
+
+
+
+// function funcA($a){
+//  echo "nameA:funcA<br>";
+//  return ++$a;
+// }
+
+// function funcA1(&$a1){
+//  echo "nameA:funcA1<br>";
+//  return ++$a1;
+// }
+
+// $varD1 = funcA($a);
+// $varD2 = funcA1($a1);
+// namespaceA.php 파일에서 namespace : nameA에서 존재한 funcA(), funcA1()를 재선언 할 수 없다.
+// Fatal error: Cannot redeclare nameA\funcA() (previously declared in D:\_xampp\htdocs\web\php_cli_test_1\namespaceD.php:44) in D:\_xampp\htdocs\web\php_cli_test_1\namespaceA.php on line ldap_t61_to_8859(value)
+
+
+?>
+
+
+===================================================
+PHP Autoload 와 Namespace 구조 설계
+===================================================
+
+
+
+---------------------------------------------------------------
+===================================================
+
+===================================================
+
+===================================================
+
+===================================================
 
 
 
